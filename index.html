@@ -147,6 +147,7 @@
       {
         id: "200g-box",
         name: "200g Box",
+        shortName: "200g Box",
         price: 129,
         weight: "200 grams",
         servings: "1 – 2 Servings",
@@ -159,6 +160,7 @@
       {
         id: "500g-tin",
         name: "500g cake tin",
+        shortName: "500g Tin",
         price: 399,
         weight: "500 grams",
         servings: "4 – 6 Servings",
@@ -171,6 +173,7 @@
       {
         id: "1kg-bundle",
         name: "1kg (two 500g cake tins)",
+        shortName: "1kg Twin",
         price: 699,
         originalPrice: 798,
         savings: "Save Rs. 99",
@@ -367,14 +370,19 @@
           time += 0.035;
 
           const topY = getHeaderBottom();
-          const dripOrigin = { x: 52, y: topY + 65 };
+          const isMobile = w < 640;
+          const scale = isMobile ? 0.52 : 1.0;
+          const dripOrigin = { x: Math.round(52 * scale), y: topY + Math.round(65 * scale) };
           const footerTop = getFooterTop();
           const isFooterInView = footerTop <= h + 80;
           const currentFloor = isFooterInView ? (footerTop - poolHeight * 0.5) : (h + 30);
 
           // 1. TOP-LEFT HANGING MOLTEN CHOCOLATE MASS (Clinging directly below Header)
           ctx.save();
-          const chocGrad = ctx.createLinearGradient(0, topY, 260, topY + 90);
+          ctx.translate(0, topY);
+          ctx.scale(scale, scale);
+
+          const chocGrad = ctx.createLinearGradient(0, 0, 260, 90);
           chocGrad.addColorStop(0, '#190803');
           chocGrad.addColorStop(0.35, '#35160A');
           chocGrad.addColorStop(0.75, '#220D05');
@@ -382,16 +390,16 @@
 
           ctx.fillStyle = chocGrad;
           ctx.beginPath();
-          ctx.moveTo(0, topY);
-          ctx.lineTo(290, topY);
-          ctx.bezierCurveTo(260, topY + 18, 230, topY + 28, 210, topY + 28);
-          ctx.bezierCurveTo(190, topY + 28, 175, topY + 56, 155, topY + 56);
-          ctx.bezierCurveTo(140, topY + 56, 130, topY + 20, 110, topY + 20);
-          ctx.bezierCurveTo(95, topY + 20, 85, topY + 46, 72, topY + 46);
-          // Main Long Drip hanging down to dripOrigin
-          ctx.bezierCurveTo(64, topY + 46, 58, topY + 56, dripOrigin.x, dripOrigin.y);
-          ctx.bezierCurveTo(46, topY + 56, 38, topY + 36, 22, topY + 36);
-          ctx.bezierCurveTo(10, topY + 36, 5, topY + 52, 0, topY + 62);
+          ctx.moveTo(0, 0);
+          ctx.lineTo(290, 0);
+          ctx.bezierCurveTo(260, 18, 230, 28, 210, 28);
+          ctx.bezierCurveTo(190, 28, 175, 56, 155, 56);
+          ctx.bezierCurveTo(140, 56, 130, 20, 110, 20);
+          ctx.bezierCurveTo(95, 20, 85, 46, 72, 46);
+          // Main Long Drip hanging down to relative tip (52, 65)
+          ctx.bezierCurveTo(64, 46, 58, 56, 52, 65);
+          ctx.bezierCurveTo(46, 56, 38, 36, 22, 36);
+          ctx.bezierCurveTo(10, 36, 5, 52, 0, 62);
           ctx.closePath();
           ctx.fill();
 
@@ -399,19 +407,19 @@
           ctx.strokeStyle = '#8A4A25';
           ctx.lineWidth = 2.5;
           ctx.beginPath();
-          ctx.moveTo(0, topY + 2);
-          ctx.lineTo(280, topY + 2);
-          ctx.bezierCurveTo(252, topY + 19, 225, topY + 29, 208, topY + 29);
-          ctx.bezierCurveTo(188, topY + 29, 173, topY + 57, 153, topY + 57);
-          ctx.bezierCurveTo(138, topY + 57, 128, topY + 21, 108, topY + 21);
-          ctx.bezierCurveTo(93, topY + 21, 83, topY + 47, 70, topY + 47);
-          ctx.bezierCurveTo(62, topY + 47, 56, topY + 57, dripOrigin.x, dripOrigin.y);
+          ctx.moveTo(0, 2);
+          ctx.lineTo(280, 2);
+          ctx.bezierCurveTo(252, 19, 225, 29, 208, 29);
+          ctx.bezierCurveTo(188, 29, 173, 57, 153, 57);
+          ctx.bezierCurveTo(138, 57, 128, 21, 108, 21);
+          ctx.bezierCurveTo(93, 21, 83, 47, 70, 47);
+          ctx.bezierCurveTo(62, 47, 56, 57, 52, 65);
           ctx.stroke();
 
           // Amber gold sparkle on the drip curve
           ctx.fillStyle = '#E8BF6D';
           ctx.beginPath();
-          ctx.ellipse(dripOrigin.x, dripOrigin.y - 4, 3.5, 1.5, 0, 0, Math.PI * 2);
+          ctx.ellipse(52, 61, 3.5, 1.5, 0, 0, Math.PI * 2);
           ctx.fill();
           ctx.restore();
 
@@ -601,12 +609,12 @@
 
           {/* Real-time Stacked Ganache Droplet Counter Badge (Glides above Footer) */}
           <div
-            className="fixed left-4 z-40 pointer-events-auto transition-[bottom] duration-150 ease-out"
+            className="fixed left-3 sm:left-4 z-40 pointer-events-auto transition-[bottom] duration-150 ease-out"
             style={{ bottom: `${badgeBottom}px` }}
           >
-            <div className="px-3.5 py-1.5 rounded-full bg-[#200E06]/95 border border-[#C9943B]/60 text-[#E8BF6D] text-[11px] font-bold shadow-2xl backdrop-blur-md flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#E8BF6D] animate-ping" />
-              <span>🍯 {dropsStacked} Drops of Belgian Ganache Stacked</span>
+            <div className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#200E06]/95 border border-[#C9943B]/60 text-[#E8BF6D] text-[10px] sm:text-[11px] font-bold shadow-2xl backdrop-blur-md flex items-center gap-1.5 sm:gap-2">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#E8BF6D] animate-ping" />
+              <span>🍯 {dropsStacked} Drops <span className="hidden sm:inline">of Belgian Ganache</span> Stacked</span>
             </div>
           </div>
         </>
@@ -798,10 +806,10 @@
           <MoltenChocolateDripSystem />
 
           {/* Top Vintage Gold Ticker */}
-          <div className="bg-[#240F06] text-[#FAF5ED] py-2 px-4 border-b border-[#C9943B]/30 text-xs text-center tracking-wider relative z-40 flex items-center justify-center gap-3">
+          <div className="bg-[#240F06] text-[#FAF5ED] py-1.5 sm:py-2 px-3 sm:px-4 border-b border-[#C9943B]/30 text-[11px] sm:text-xs text-center tracking-wider relative z-40 flex items-center justify-center gap-2 sm:gap-3">
             <span className="text-[#C9943B]">★</span>
             <span className="font-serif italic text-[#E8BF6D]">Home-baked. Luxe-finished.</span>
-            <span>•</span>
+            <span className="hidden xs:inline">•</span>
             <span className="hidden sm:inline">100% Pure Veg & Eggless</span>
             <span>•</span>
             <a href={BRAND.instagramUrl} target="_blank" className="text-[#E8BF6D] hover:underline font-bold">
@@ -811,31 +819,32 @@
           </div>
 
           {/* Header */}
-          <header className="sticky top-0 z-40 bg-[#FAF5ED]/95 backdrop-blur-md border-b border-[#C9943B]/20 py-3.5 shadow-sm">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+          <header className="sticky top-0 z-40 bg-[#FAF5ED]/95 backdrop-blur-md border-b border-[#C9943B]/20 py-2.5 sm:py-3.5 shadow-sm">
+            <div className="max-w-6xl mx-auto px-3 sm:px-6 flex items-center justify-between">
               
               {/* Crest & Title */}
-              <a href="#" className="flex items-center gap-3 group">
-                <MatildaLogo className="w-12 h-12 transform group-hover:scale-105 transition-transform" />
+              <a href="#" className="flex items-center gap-2 sm:gap-3 group">
+                <MatildaLogo className="w-9 h-9 sm:w-12 sm:h-12 transform group-hover:scale-105 transition-transform" />
                 <div>
-                  <h1 className="font-serif text-2xl font-bold text-[#240F06] tracking-wide leading-none">
+                  <h1 className="font-serif text-lg sm:text-2xl font-bold text-[#240F06] tracking-wide leading-none">
                     Matilda <span className="font-serif italic text-[#C9943B]">Bakeluxe</span>
                   </h1>
-                  <span className="font-cormorant text-xs tracking-[0.25em] text-[#8C5C1B] uppercase font-bold block mt-1">
+                  <span className="font-cormorant text-[9px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] text-[#8C5C1B] uppercase font-bold block mt-0.5 sm:mt-1">
                     Home-baked. Luxe-finished.
                   </span>
                 </div>
               </a>
 
               {/* Action Buttons */}
-              <div className="flex items-center gap-2.5 sm:gap-4">
+              <div className="flex items-center gap-2 sm:gap-4">
                 <button
                   onClick={() => setIsFlyerOpen(true)}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#3A1C0E] hover:bg-[#2A140A] text-[#FAF5ED] text-xs font-bold border border-[#C9943B]/50 shadow-sm transition-all"
+                  className="flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#3A1C0E] hover:bg-[#2A140A] text-[#FAF5ED] text-[11px] sm:text-xs font-bold border border-[#C9943B]/50 shadow-sm transition-all"
                 >
                   <span className="text-[#E8BF6D]">📜</span>
-                  <span className="hidden sm:inline">Official</span>
-                  <span>Menu Flyer</span>
+                  <span className="hidden sm:inline">Official </span>
+                  <span className="hidden xs:inline">Menu </span>
+                  <span>Flyer</span>
                 </button>
 
                 <a
@@ -849,7 +858,7 @@
 
                 <button
                   onClick={() => setIsCartOpen(true)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#C9943B] hover:bg-[#B3802E] text-[#1E0E07] text-xs sm:text-sm font-extrabold shadow-md active:scale-95 transition-all"
+                  className="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#C9943B] hover:bg-[#B3802E] text-[#1E0E07] text-xs sm:text-sm font-extrabold shadow-md active:scale-95 transition-all"
                 >
                   <span>🛍️ Bag</span>
                   {totalBagCount > 0 && (
@@ -862,6 +871,10 @@
 
             </div>
           </header>
+              </div>
+
+            </div>
+          </header>
 
           <main className="flex-1 relative z-20">
             
@@ -869,30 +882,30 @@
             <section className="pt-8 pb-12 px-4 max-w-6xl mx-auto">
               
               {/* Header Title Matching Flyer Calligraphy */}
-              <div className="text-center space-y-2 mb-10">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#C9943B]/40 text-[#8C5C1B] text-xs font-bold shadow-xs">
+              <div className="text-center space-y-2 mb-8 sm:mb-10">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#C9943B]/40 text-[#8C5C1B] text-[11px] sm:text-xs font-bold shadow-xs">
                   <div className="veg-box"><div className="veg-circle" /></div>
                   <span>100% Pure Vegetarian & Eggless</span>
                 </div>
 
-                <h2 className="font-serif text-4xl sm:text-6xl font-extrabold text-[#240F06] tracking-tight">
-                  Matilda <span className="font-script font-normal text-[#C9943B] text-5xl sm:text-7xl block sm:inline">Chocolate Cake</span>
+                <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#240F06] tracking-tight">
+                  Matilda <span className="font-script font-normal text-[#C9943B] text-4xl sm:text-6xl md:text-7xl block sm:inline">Chocolate Cake</span>
                 </h2>
 
-                <p className="font-script text-3xl sm:text-4xl text-[#8C5C1B] pt-1">
+                <p className="font-script text-2xl sm:text-3xl md:text-4xl text-[#8C5C1B] pt-1">
                   "{BRAND.slogan}"
                 </p>
 
-                <p className="font-cormorant text-lg sm:text-xl text-[#432111] max-w-xl mx-auto italic font-medium">
+                <p className="font-cormorant text-base sm:text-xl text-[#432111] max-w-xl mx-auto italic font-medium px-2">
                   "Home-baked with love, bathed in rich Belgian ganache, finished with artisan chocolate curls."
                 </p>
               </div>
 
               {/* Breathtaking Split Presentation */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white/80 backdrop-blur-sm rounded-3xl border-2 border-[#C9943B]/30 p-6 sm:p-10 shadow-xl">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl border-2 border-[#C9943B]/30 p-4 sm:p-10 shadow-xl">
                 
                 {/* Left: The Decadent Cake Slice with Warm Ganache Simulator */}
-                <div className="lg:col-span-5 relative space-y-4">
+                <div className="lg:col-span-5 relative space-y-3 sm:space-y-4">
                   <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl border-4 border-white bg-[#1A0A04]">
                     <img
                       src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=85"
@@ -924,7 +937,7 @@
                       showToast("♨️ Simulating 15-second microwave reheat! Ganache melts into warm lava.");
                       setTimeout(() => setWarmSimActive(false), 4000);
                     }}
-                    className="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-[#FAF5ED] to-[#F3E9DD] hover:bg-[#F3E9DD] border border-[#C9943B]/40 text-[#432111] text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+                    className="w-full py-3 px-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#FAF5ED] to-[#F3E9DD] hover:bg-[#F3E9DD] border border-[#C9943B]/40 text-[#432111] text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm min-h-[44px]"
                   >
                     <span>♨️</span>
                     <span>{warmSimActive ? 'Ganache Melting Softly...' : 'Try 15-Second Warm Ganache Simulator'}</span>
@@ -932,14 +945,14 @@
                 </div>
 
                 {/* Right: The Interactive 3-Size Selector & Ordering */}
-                <div className="lg:col-span-7 space-y-6">
+                <div className="lg:col-span-7 space-y-4 sm:space-y-6">
                   
                   {/* Tier Switcher Pills */}
                   <div className="space-y-2">
                     <span className="font-cormorant text-xs font-bold uppercase tracking-widest text-[#8C5C1B] block">
                       Step 1: Choose Your Portion
                     </span>
-                    <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                    <div className="grid grid-cols-3 gap-1.5 sm:gap-3">
                       {MENU_SIZES.map((size, idx) => {
                         const isSelected = selectedTierIndex === idx;
                         return (
@@ -949,14 +962,17 @@
                               playSweetChime();
                               setSelectedTierIndex(idx);
                             }}
-                            className={`p-3 rounded-2xl border text-center transition-all ${
+                            className={`p-2 sm:p-3 rounded-xl sm:rounded-2xl border text-center transition-all ${
                               isSelected
                                 ? 'bg-[#3A1C0E] text-[#FAF5ED] border-[#C9943B] shadow-md scale-[1.02]'
                                 : 'bg-[#FAF5ED] text-[#240F06] border-gray-200 hover:border-[#C9943B]/50'
                             }`}
                           >
-                            <span className="font-serif font-bold text-xs sm:text-sm block">{size.name}</span>
-                            <span className={`text-xs font-extrabold block mt-0.5 ${isSelected ? 'text-[#E8BF6D]' : 'text-[#8C5C1B]'}`}>
+                            <span className="font-serif font-bold text-[11px] sm:text-sm block leading-tight">
+                              <span className="sm:hidden">{size.shortName || size.name}</span>
+                              <span className="hidden sm:inline">{size.name}</span>
+                            </span>
+                            <span className={`text-[11px] sm:text-xs font-extrabold block mt-0.5 sm:mt-1 ${isSelected ? 'text-[#E8BF6D]' : 'text-[#8C5C1B]'}`}>
                               Rs. {size.price}
                             </span>
                           </button>
@@ -966,28 +982,28 @@
                   </div>
 
                   {/* Active Selected Tier Display (Plaque Style) */}
-                  <div className="plaque-gold p-6 text-[#FAF5ED] space-y-4">
-                    <div className="flex items-start justify-between gap-4">
+                  <div className="plaque-gold p-4 sm:p-6 text-[#FAF5ED] space-y-3 sm:space-y-4">
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
                       <div className="space-y-1">
-                        <span className="px-2.5 py-0.5 rounded-full bg-[#E8BF6D]/20 text-[#E8BF6D] border border-[#E8BF6D]/40 text-[10px] font-bold uppercase tracking-wider">
+                        <span className="px-2.5 py-0.5 rounded-full bg-[#E8BF6D]/20 text-[#E8BF6D] border border-[#E8BF6D]/40 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider">
                           {activeSize.badge}
                         </span>
-                        <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#FFF1D0]">
+                        <h3 className="font-serif text-xl sm:text-3xl font-bold text-[#FFF1D0]">
                           {activeSize.name}
                         </h3>
-                        <span className="text-xs text-[#E8BF6D] block font-semibold">
+                        <span className="text-[11px] sm:text-xs text-[#E8BF6D] block font-semibold">
                           👥 {activeSize.servings} · 📦 {activeSize.packaging}
                         </span>
                       </div>
 
                       {/* Ornate Price Plaque */}
-                      <div className="text-right">
-                        <span className="text-[10px] text-[#FAF5ED]/60 uppercase tracking-widest block">Price</span>
-                        <span className="font-serif text-3xl sm:text-4xl font-extrabold gold-foil-text">
+                      <div className="text-left sm:text-right flex sm:flex-col items-baseline sm:items-end gap-2 sm:gap-0">
+                        <span className="text-[9px] sm:text-[10px] text-[#FAF5ED]/60 uppercase tracking-widest block">Price:</span>
+                        <span className="font-serif text-2xl sm:text-4xl font-extrabold gold-foil-text">
                           Rs. {activeSize.price}
                         </span>
                         {activeSize.savings && (
-                          <span className="text-[11px] font-bold text-emerald-400 block">
+                          <span className="text-[10px] sm:text-[11px] font-bold text-emerald-400 block">
                             {activeSize.savings}
                           </span>
                         )}
@@ -999,15 +1015,15 @@
                     </p>
 
                     {/* Quantity Stepper & Dual Action Buttons */}
-                    <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                    <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
                       
                       {/* Stepper */}
-                      <div className="flex items-center justify-between w-full sm:w-auto bg-black/40 px-3 py-2 rounded-xl border border-white/20 gap-3">
+                      <div className="flex items-center justify-between bg-black/40 px-3 py-2 rounded-xl border border-white/20 gap-3 min-h-[44px]">
                         <span className="text-xs text-white/70">Qty:</span>
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => updateQty(activeSize.id, -1)}
-                            className="w-7 h-7 rounded-lg bg-white/10 text-white font-bold hover:bg-white/20 text-xs flex items-center justify-center"
+                            className="w-8 h-8 rounded-lg bg-white/10 text-white font-bold hover:bg-white/20 text-xs flex items-center justify-center active:scale-95"
                           >
                             -
                           </button>
@@ -1016,7 +1032,7 @@
                           </span>
                           <button
                             onClick={() => updateQty(activeSize.id, 1)}
-                            className="w-7 h-7 rounded-lg bg-white/10 text-white font-bold hover:bg-white/20 text-xs flex items-center justify-center"
+                            className="w-8 h-8 rounded-lg bg-white/10 text-white font-bold hover:bg-white/20 text-xs flex items-center justify-center active:scale-95"
                           >
                             +
                           </button>
@@ -1026,7 +1042,7 @@
                       {/* WhatsApp Direct Order Button */}
                       <button
                         onClick={() => handleDirectWhatsAppOrder(activeSize)}
-                        className="flex-1 w-full py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2"
+                        className="flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 min-h-[44px] active:scale-95"
                       >
                         <span>💬 Order on WhatsApp</span>
                       </button>
@@ -1034,7 +1050,7 @@
                       {/* Add to Bag Button */}
                       <button
                         onClick={() => handleAddSizeToBag(activeSize)}
-                        className="flex-1 w-full py-3 px-5 rounded-xl bg-[#C9943B] hover:bg-[#B3802E] text-[#1E0E07] font-extrabold text-xs shadow-md transition-all flex items-center justify-center gap-1.5"
+                        className="flex-1 py-3 px-4 rounded-xl bg-[#C9943B] hover:bg-[#B3802E] text-[#1E0E07] font-extrabold text-xs shadow-md transition-all flex items-center justify-center gap-1.5 min-h-[44px] active:scale-95"
                       >
                         <span>+ Add to Bag</span>
                       </button>
@@ -1067,10 +1083,10 @@
                   return (
                     <div
                       key={size.id}
-                      className="bg-white/90 backdrop-blur-sm rounded-3xl border-2 border-[#C9943B]/30 p-5 sm:p-7 shadow-luxury flex flex-col md:flex-row items-center justify-between gap-6 hover:border-[#C9943B] transition-all"
+                      className="bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl border-2 border-[#C9943B]/30 p-4 sm:p-7 shadow-luxury flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6 hover:border-[#C9943B] transition-all"
                     >
                       {/* Left: Illustration */}
-                      <div className="flex-shrink-0 flex items-center justify-center w-28 h-28">
+                      <div className="flex-shrink-0 flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28">
                         {size.illustrationType === "box" && <IllustrationBox />}
                         {size.illustrationType === "tin" && <IllustrationTin />}
                         {size.illustrationType === "twin" && <IllustrationTwinTins />}
@@ -1078,19 +1094,19 @@
 
                       {/* Middle: Details */}
                       <div className="flex-1 text-center md:text-left space-y-2">
-                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
-                          <h4 className="font-serif font-bold text-2xl text-[#240F06]">{size.name}</h4>
-                          <span className="px-2.5 py-0.5 rounded-full bg-[#FAF5ED] border border-[#C9943B]/30 text-[11px] font-bold text-[#8C5C1B]">
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2">
+                          <h4 className="font-serif font-bold text-xl sm:text-2xl text-[#240F06]">{size.name}</h4>
+                          <span className="px-2.5 py-0.5 rounded-full bg-[#FAF5ED] border border-[#C9943B]/30 text-[10px] sm:text-[11px] font-bold text-[#8C5C1B]">
                             {size.servings}
                           </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-extrabold">
+                          <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[9px] sm:text-[10px] font-extrabold">
                             {size.badge}
                           </span>
                         </div>
                         <p className="text-xs text-gray-600 leading-relaxed max-w-lg font-light">
                           {size.description}
                         </p>
-                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-[11px] text-[#8C5C1B] font-semibold">
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-[10px] sm:text-[11px] text-[#8C5C1B] font-semibold">
                           <span>📦 {size.packaging}</span>
                           <span>•</span>
                           <span>🌱 100% Eggless</span>
@@ -1098,13 +1114,13 @@
                       </div>
 
                       {/* Right: Plaque with Price & Direct Order */}
-                      <div className="flex-shrink-0 flex flex-col items-center sm:items-end gap-3 w-full md:w-auto">
-                        <div className="plaque-gold px-8 py-3 text-center min-w-[170px]">
-                          <span className="font-serif text-3xl font-extrabold gold-foil-text block">
+                      <div className="flex-shrink-0 flex flex-col items-center sm:items-end gap-2.5 sm:gap-3 w-full md:w-auto">
+                        <div className="plaque-gold px-6 py-2.5 sm:px-8 sm:py-3 text-center w-full sm:min-w-[170px]">
+                          <span className="font-serif text-2xl sm:text-3xl font-extrabold gold-foil-text block">
                             Rs. {size.price}
                           </span>
                           {size.savings && (
-                            <span className="text-[10px] font-bold text-emerald-400 block -mt-1">
+                            <span className="text-[10px] font-bold text-emerald-400 block -mt-0.5 sm:-mt-1">
                               {size.savings}
                             </span>
                           )}
@@ -1113,13 +1129,13 @@
                         <div className="grid grid-cols-2 gap-2 w-full">
                           <button
                             onClick={() => handleDirectWhatsAppOrder(size)}
-                            className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all shadow-xs"
+                            className="py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all shadow-xs flex items-center justify-center gap-1.5 min-h-[44px] active:scale-95"
                           >
                             💬 WhatsApp
                           </button>
                           <button
                             onClick={() => handleAddSizeToBag(size)}
-                            className="py-2.5 px-3 rounded-xl bg-[#FAF5ED] hover:bg-[#F3E9DD] text-[#432111] font-bold text-xs border border-[#C9943B]/40 transition-all"
+                            className="py-3 px-3 rounded-xl bg-[#FAF5ED] hover:bg-[#F3E9DD] text-[#432111] font-bold text-xs border border-[#C9943B]/40 transition-all flex items-center justify-center gap-1.5 min-h-[44px] active:scale-95"
                           >
                             + Bag
                           </button>
@@ -1277,21 +1293,21 @@
           </main>
 
           {/* Luxury Footer */}
-          <footer id="site-footer" className="bg-[#1E0E07] text-[#FAF5ED] border-t-2 border-[#C9943B]/40 py-10 px-4 mt-12 relative z-40">
-            <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-[#FAF5ED]/70">
+          <footer id="site-footer" className="bg-[#1E0E07] text-[#FAF5ED] border-t-2 border-[#C9943B]/40 py-8 sm:py-10 px-4 mt-8 sm:mt-12 relative z-40">
+            <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 text-xs text-[#FAF5ED]/70 text-center sm:text-left">
               <div className="flex items-center gap-3">
                 <MatildaLogo className="w-10 h-10" />
-                <div>
+                <div className="text-left">
                   <span className="font-serif font-bold text-base text-[#FAF5ED] block">Matilda Bakeluxe</span>
                   <span className="text-[10px] text-[#C9943B]">{BRAND.tagline}</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 text-xs">
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs">
                 <a href={BRAND.instagramUrl} target="_blank" className="hover:text-[#E8BF6D] transition-colors">{BRAND.instagramHandle}</a>
-                <span>•</span>
+                <span className="hidden xs:inline">•</span>
                 <button onClick={() => setIsFlyerOpen(true)} className="hover:text-[#E8BF6D] transition-colors">Menu Card Flyer</button>
-                <span>•</span>
+                <span className="hidden xs:inline">•</span>
                 <a href={`https://wa.me/${BRAND.whatsappNumber.replace(/[^0-9]/g, '')}`} target="_blank" className="text-emerald-400 font-semibold">
                   WhatsApp Orders
                 </a>
