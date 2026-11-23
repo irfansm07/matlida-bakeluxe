@@ -2,24 +2,21 @@
 
 > *"Home-baked. Luxe-finished. Indulge in every slice of happiness!"*
 
-A classy, ultra-luxurious, and high-performance React website crafted for **Matilda Bakeluxe** (`@matilda.bakeluxe`). Designed with decadent chocolate and royal gold aesthetics, interactive 3D card tilt physics, ambient golden particle canvas, warm molten ganache simulator, customized portion & packaging tiers matching the official menu flyer, and seamless 1-tap WhatsApp and Instagram checkout!
+A classy, ultra-luxurious, and high-performance React website crafted for **Matilda Bakeluxe** (`@matilda.bakeluxe`). Designed with decadent chocolate and royal gold aesthetics, continuous physics-based molten chocolate drip animation, customized portion tiers matching the official menu flyer, and seamless 1-tap WhatsApp and Instagram checkout!
 
 ---
 
 ## ✨ Features & Highlights
 
 1. **Brand Identity & Exact Menu Tiers (from your Official Flyer)**:
-   - **200g Box** — **Rs. 129** (Intro special in custom gold-embossed gift box)
+   - **200g Box** — **Rs. 129** (Signature personal portion)
    - **500g Cake Tin** — **Rs. 399** (Our iconic baked-in-tin chocolate cake with dark ganache & curls)
-   - **1kg Grand Twin Pack** — **Rs. 699** (Two 500g tins with luxury ribbon carrier — saves Rs. 99)
-   - Recreated vector **Matilda Bakeluxe Crest Logo** with royal gold gradients, whisk monogram, and laurel wreaths.
+   - **1kg Grand Twin Pack** — **Rs. 699** (Two 500g tins — saves Rs. 99)
+   - Official **Matilda Bakeluxe Crest Logo** with royal gold gradients.
    - Interactive **"View Official Menu Card" Lightbox Modal** displaying your original uploaded flyer (`matilda-menu-flyer.jpg`) with zoom controls and 1-click order buttons!
 
-2. **Mindblowing Animations & Interactive Elements**:
-   - **HTML5 Canvas Particle Engine**: Floating ambient golden dust, diamond stars, and cocoa shimmer that softly react to mouse movement.
-   - **3D Parallax Tilt Hero Card**: Real-time 3D rotation (`rotateX`, `rotateY`) and dynamic specular glare tracking the cursor across the cake slice.
-   - **Interactive 15-Second Warm Ganache Simulator**: Animates a molten ganache wave with steam alerts and audio chime!
-   - **Serving Size Advisor Slider**: Lets customers slide their guest count (1 to 12+) to automatically recommend the optimal cake portion.
+2. **Decadent Animations & Interactive Elements**:
+   - **Continuous Falling Droplets Engine**: Physics-based molten chocolate drip hanging below header and stacking droplets into a rich ganache pool above the footer.
    - **Native Web Audio API Chimes**: Sweet, crystalline acoustic chimes on adding items to bag (zero MP3 download lag, muteable at any time).
    - **Organic Chocolate Drip Dividers**: Custom SVG fluid chocolate drips separating page sections.
 

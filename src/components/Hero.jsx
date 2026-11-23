@@ -232,25 +232,17 @@ export default function Hero({ onCustomizeCake, onOpenFlyer }) {
                   Four intense chocolate sponge tiers soaked with molten fudge ganache, finished with hand-carved chocolate curls.
                 </p>
 
-                {/* Interactive Taster Controls */}
-                <div className="pt-2 flex items-center gap-2">
-                  <button
-                    onClick={toggleWarmGanache}
-                    className="flex-1 py-2 rounded-xl bg-[#2C1409] hover:bg-[#3D1D0E] border border-[#C89D56]/40 text-[#FFE082] text-xs font-medium transition-all flex items-center justify-center gap-1.5 group/btn"
-                  >
-                    <span className="group-hover/btn:rotate-12 transition-transform">♨️</span>
-                    <span>{warmEffect ? 'Ganache Melting...' : 'Simulate 15s Warm-up'}</span>
-                  </button>
-
+                {/* Order / Customize Action */}
+                <div className="pt-2">
                   <button
                     onClick={() => {
                       playChime();
                       onCustomizeCake(SIGNATURE_CAKE.sizes[1]);
                     }}
-                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#C9943B] to-[#AA7A1E] text-[#1E0B04] text-xs font-bold hover:scale-105 active:scale-95 transition-all shadow-md flex items-center gap-1"
+                    className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#C9943B] to-[#AA7A1E] text-[#1E0B04] text-xs font-bold hover:scale-105 active:scale-95 transition-all shadow-md flex items-center justify-center gap-1.5"
                   >
-                    <span>Customize</span>
-                    <span>+</span>
+                    <span>Order Signature Cake</span>
+                    <span>→</span>
                   </button>
                 </div>
               </div>

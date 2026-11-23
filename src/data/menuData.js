@@ -17,10 +17,9 @@ export const MENU_SIZES = [
     fullName: "Matilda Chocolate Cake (200g Box)",
     price: 129,
     servings: "1 - 2 Servings",
-    packaging: "Luxe Branded Box",
     badge: "Intro Special",
     badgeColor: "bg-amber-100 text-amber-900 border-amber-300",
-    description: "Our signature moist chocolate fudge cake packed in an elegant gift box with gold logo. Perfect personal indulgence or tasting treat."
+    description: "Our signature moist chocolate fudge cake finished with rich Belgian ganache and curls. Perfect personal indulgence."
   },
   {
     id: "500g-tin",
@@ -28,10 +27,9 @@ export const MENU_SIZES = [
     fullName: "Matilda Chocolate Cake (500g Cake Tin)",
     price: 399,
     servings: "4 - 6 Servings",
-    packaging: "Metallic Cake Tin",
     badge: "Most Loved ⭐",
     badgeColor: "bg-[#E83E63] text-white border-transparent",
-    description: "Baked directly inside our airtight metallic cake tin for maximum moisture retention. Generously layered with rich chocolate ganache and curls."
+    description: "Baked directly inside our airtight cake tin for maximum moisture retention. Generously layered with rich chocolate ganache and curls."
   },
   {
     id: "1kg-bundle",
@@ -41,7 +39,6 @@ export const MENU_SIZES = [
     originalPrice: 798,
     savings: "Save Rs. 99",
     servings: "8 - 12 Servings",
-    packaging: "Two 500g Metallic Tins",
     badge: "Party Value 🎉",
     badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-300",
     description: "Double the happiness! Two complete 500g tins of our signature chocolate cake. Ideal for family gatherings, birthdays, and celebrations."
@@ -52,10 +49,6 @@ export const FAQS = [
   {
     q: "Is the Matilda Chocolate Cake 100% Eggless?",
     a: "Yes! Our cake is 100% vegetarian & eggless. We use premium Dutch cocoa, fresh dairy, and artisan baking methods to achieve that intensely moist, melt-in-mouth chocolate fudge texture."
-  },
-  {
-    q: "What is the 15-second warm ganache secret?",
-    a: "For the absolute best taste, pop your slice or cake tin into the microwave for 15-20 seconds before eating. The ganache melts into a warm, glossy chocolate river!"
   },
   {
     q: "How do I order?",

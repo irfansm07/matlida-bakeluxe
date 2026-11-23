@@ -162,10 +162,9 @@
         price: 129,
         weight: "200 grams",
         servings: "1 – 2 Servings",
-        packaging: "Gold-Embossed Gift Box",
         badge: "Personal Indulgence",
-        description: "Our signature moist chocolate fudge cake nestled inside an elegant chocolate-brown presentation box with golden Matilda seal. Perfect personal treat or luxury gifting.",
-        highlights: ["Individual Portion", "Custom Gift Box", "Dark Chocolate Curls"],
+        description: "Our signature moist chocolate fudge cake finished with rich Belgian ganache and artisan curls. Perfect personal indulgence.",
+        highlights: ["Individual Portion", "Freshly Baked", "Dark Chocolate Curls"],
         illustrationType: "box"
       },
       {
@@ -175,10 +174,9 @@
         price: 399,
         weight: "500 grams",
         servings: "4 – 6 Servings",
-        packaging: "Circular Metallic Tin",
         badge: "Most Loved ⭐",
-        description: "Baked directly inside our sleek airtight metallic baking tin to seal in moisture. Steeping in decadent glossy ganache and topped with hand-rolled chocolate curls.",
-        highlights: ["Bestseller", "Airtight Metallic Tin", "Effortless 15s Reheat"],
+        description: "Baked directly inside our airtight cake tin to seal in moisture. Steeping in decadent glossy ganache and topped with hand-rolled chocolate curls.",
+        highlights: ["Bestseller", "Airtight Cake Tin", "Pure Belgian Ganache"],
         illustrationType: "tin"
       },
       {
@@ -190,9 +188,8 @@
         savings: "Save Rs. 99",
         weight: "1,000 grams (1 kg)",
         servings: "8 – 12 Servings",
-        packaging: "Two 500g Tins in Ribbon Carrier",
         badge: "Celebration Value 🎉",
-        description: "Double the sweet happiness! Two complete 500g tins of our signature chocolate cake bundled in luxury packaging. Perfect for parties, gatherings, or sharing.",
+        description: "Double the sweet happiness! Two complete 500g tins of our signature chocolate cake. Perfect for parties, celebrations, or sharing.",
         highlights: ["Party Bundle", "Two Complete 500g Tins", "Save Rs. 99"],
         illustrationType: "twin"
       }
@@ -730,7 +727,6 @@
       const [cart, setCart] = useState([]);
       const [isCartOpen, setIsCartOpen] = useState(false);
       const [isFlyerOpen, setIsFlyerOpen] = useState(false);
-      const [warmSimActive, setWarmSimActive] = useState(false);
       const [toastMsg, setToastMsg] = useState(null);
 
       const activeSize = MENU_SIZES[selectedTierIndex];
@@ -766,7 +762,7 @@
         playSweetChime();
         const qty = quantities[sizeObj.id] || 1;
         const total = sizeObj.price * qty;
-        const text = `🧁 *NEW ORDER — MATILDA BAKELUXE*\n----------------------------------------\n*Item:* Matilda Chocolate Cake (${sizeObj.name})\n*Quantity:* ${qty}\n*Total Price:* Rs. ${total}\n*Packaging:* ${sizeObj.packaging}\n*Diet:* 100% Pure Veg & Eggless\n----------------------------------------\nHello, I would like to order this fresh for delivery! Please confirm availability. ✨`;
+        const text = `🧁 *NEW ORDER — MATILDA BAKELUXE*\n----------------------------------------\n*Item:* Matilda Chocolate Cake (${sizeObj.name})\n*Quantity:* ${qty}\n*Total Price:* Rs. ${total}\n*Diet:* 100% Pure Veg & Eggless\n----------------------------------------\nHello, I would like to order this fresh for delivery! Please confirm availability. ✨`;
         const cleanNumber = BRAND.whatsappNumber.replace(/[^0-9]/g, '');
         window.open(`https://wa.me/${cleanNumber}?text=${encodeURIComponent(text)}`, '_blank');
       };
@@ -898,7 +894,7 @@
               {/* Breathtaking Split Presentation */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl border-2 border-[#C9943B]/30 p-4 sm:p-10 shadow-xl">
                 
-                {/* Left: The Decadent Cake Slice with Warm Ganache Simulator */}
+                {/* Left: The Decadent Cake Slice Presentation */}
                 <div className="lg:col-span-5 relative space-y-3 sm:space-y-4">
                   <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl border-4 border-white bg-[#1A0A04]">
                     <img
@@ -906,16 +902,6 @@
                       alt="Matilda Chocolate Cake Slice with Glossy Ganache"
                       className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
                     />
-
-                    {/* Warm Ganache Overlay Animation */}
-                    {warmSimActive && (
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#240F06]/90 via-transparent to-transparent flex items-end justify-center pb-4">
-                        <div className="px-4 py-1.5 rounded-full bg-[#E8BF6D] text-[#240F06] text-xs font-extrabold shadow-lg animate-bounce flex items-center gap-1.5">
-                          <span>♨️</span>
-                          <span>Warm Molten Ganache Flowing!</span>
-                        </div>
-                      </div>
-                    )}
 
                     <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 text-[11px] font-bold text-[#15803D] flex items-center gap-1.5 shadow-sm">
                       <div className="veg-box"><div className="veg-circle" /></div>
@@ -928,20 +914,6 @@
                       <span className="font-serif text-[10px] sm:text-[11px] font-bold text-[#E8BF6D]">Authentic Seal</span>
                     </div>
                   </div>
-
-                  {/* 15-Second Warm Ganache Button */}
-                  <button
-                    onClick={() => {
-                      playSweetChime();
-                      setWarmSimActive(true);
-                      showToast("♨️ Simulating 15-second microwave reheat! Ganache melts into warm lava.");
-                      setTimeout(() => setWarmSimActive(false), 4000);
-                    }}
-                    className="w-full py-3 px-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#FAF5ED] to-[#F3E9DD] hover:bg-[#F3E9DD] border border-[#C9943B]/40 text-[#432111] text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm min-h-[44px]"
-                  >
-                    <span>♨️</span>
-                    <span>{warmSimActive ? 'Ganache Melting Softly...' : 'Try 15-Second Warm Ganache Simulator'}</span>
-                  </button>
                 </div>
 
                 {/* Right: The Interactive 3-Size Selector & Ordering */}
@@ -994,7 +966,7 @@
                           {activeSize.name}
                         </h3>
                         <span className="text-[11px] sm:text-xs text-[#E8BF6D] block font-semibold">
-                          👥 {activeSize.servings} · 📦 {activeSize.packaging}
+                          👥 {activeSize.servings} · 🌱 100% Eggless
                         </span>
                       </div>
 
@@ -1109,9 +1081,7 @@
                           {size.description}
                         </p>
                         <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-[10px] sm:text-[11px] text-[#8C5C1B] font-semibold">
-                          <span>📦 {size.packaging}</span>
-                          <span>•</span>
-                          <span>🌱 100% Eggless</span>
+                          <span>🌱 100% Pure Vegetarian & Eggless</span>
                         </div>
                       </div>
 
@@ -1173,12 +1143,11 @@
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   {[
                     { icon: "🍫", title: "Belgian Couverture", desc: "Pure dark chocolate and Dutch alkalized cocoa for intense, deep chocolate notes." },
                     { icon: "🧈", title: "Slow-Churned Butter", desc: "Real fresh dairy butter for a cloud-soft crumb that melts upon contact." },
                     { icon: "🌱", title: "100% Eggless Mastery", desc: "Vegetarian perfection achieved without compromising moisture or sponge density." },
-                    { icon: "♨️", title: "15-Second Secret", desc: "Microwave for 15s to turn the ganache into a warm, glossy chocolate river." },
                   ].map(p => (
                     <div key={p.title} className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2 text-center">
                       <span className="text-3xl block">{p.icon}</span>
@@ -1228,7 +1197,6 @@
               <div className="space-y-3">
                 {[
                   { q: "Is the Matilda Chocolate Cake 100% Eggless?", a: "Yes! Our cake is 100% pure vegetarian and eggless. We achieve that rich, cloud-soft, intensely moist chocolate fudge texture through pure Belgian couverture and slow-churned butter." },
-                  { q: "How does the 15-second warm ganache trick work?", a: "Warm your slice or cake tin in the microwave for 15-20 seconds before eating. The glossy ganache liquefies into a velvety warm chocolate river!" },
                   { q: "How do I place an order?", a: "Choose your portion size above and tap 'Order on WhatsApp' to send your pre-filled cart with 1 click, or DM us on Instagram @matilda.bakeluxe!" },
                   { q: "How much advance notice is needed?", a: "Each cake is freshly baked and finished to order. Please order 4 to 6 hours in advance for same-day delivery." }
                 ].map(faq => (

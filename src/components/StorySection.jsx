@@ -21,7 +21,7 @@ export default function StorySection() {
     {
       icon: "🎁",
       title: "Luxe Presentation",
-      desc: "Home-baked heart meets high-fashion luxury. Our custom gold-embossed gift boxes, sleek airtight cake tins, and satin ribbon packaging make every delivery an unforgettable celebration."
+      desc: "Home-baked heart meets high-fashion luxury. Baked fresh with love and decadent Belgian ganache to make every celebration unforgettable."
     }
   ];
 

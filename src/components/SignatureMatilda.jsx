@@ -217,20 +217,20 @@ export default function SignatureMatilda({ onAddToCart, onCustomizeCake }) {
             </div>
           </div>
 
-          {/* Tasting Tip: 15-second microwave secret */}
+          {/* Artisan Quality Note */}
           <div className="lg:col-span-6 bg-[#1A0A04]/80 p-6 rounded-2xl border border-[#C89D56]/20 space-y-3">
             <div className="flex items-center gap-2 text-amber-400 font-semibold text-xs tracking-wider uppercase">
-              <span>♨️</span> The Baker's Golden Rule
+              <span>👑</span> Artisanal Quality Guarantee
             </div>
             <h4 className="font-serif text-lg font-bold text-[#FFE082]">
-              "The 15-Second Warm Ganache Secret"
+              "Pure Belgian Couverture & Cocoa"
             </h4>
             <p className="text-xs sm:text-sm text-[#EAD8C0]/80 leading-relaxed font-light">
-              For an out-of-this-world dessert experience, warm your slice or cake tin in the microwave for <strong className="text-[#FFE082] font-medium">15 to 20 seconds</strong> before serving. The rich Belgian ganache liquefies into a velvety warm cascade while the chocolate sponge turns impossibly moist and soft.
+              Every Matilda cake is baked fresh to order using slow-churned dairy butter and authentic Belgian dark couverture. 100% pure vegetarian & eggless for a cloud-soft, intensely rich crumb.
             </p>
             <div className="pt-1 flex items-center gap-4 text-xs text-[#C89D56]">
-              <span>✓ Spoon-melting goodness</span>
-              <span>✓ Real Belgian aroma</span>
+              <span>✓ 100% Pure Veg & Eggless</span>
+              <span>✓ Freshly Baked Daily</span>
             </div>
           </div>
 
