@@ -38,6 +38,9 @@ try {
                 $mime = $mimeMap[$ext]
                 if (-not $mime) { $mime = "application/octet-stream" }
                 $response.ContentType = $mime
+                $response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate")
+                $response.Headers.Add("Pragma", "no-cache")
+                $response.Headers.Add("Expires", "0")
                 
                 $bytes = [System.IO.File]::ReadAllBytes($filePath)
                 $response.ContentLength64 = $bytes.Length

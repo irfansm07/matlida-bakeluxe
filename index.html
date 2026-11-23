@@ -823,31 +823,30 @@
           </div>
 
           {/* Header */}
-          <header className="sticky top-0 z-40 bg-[#FAF5ED]/95 backdrop-blur-md border-b border-[#C9943B]/20 py-2.5 sm:py-3.5 shadow-sm">
-            <div className="max-w-6xl mx-auto px-3 sm:px-6 flex items-center justify-between">
+          <header className="sticky top-0 z-40 bg-[#FAF5ED]/95 backdrop-blur-md border-b border-[#C9943B]/20 py-2 sm:py-3.5 shadow-sm w-full">
+            <div className="max-w-6xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-2">
               
               {/* Crest & Title */}
-              <a href="#" className="flex items-center gap-2 sm:gap-3 group">
-                <MatildaLogo className="w-9 h-9 sm:w-12 sm:h-12 transform group-hover:scale-105 transition-transform" />
-                <div>
-                  <h1 className="font-serif text-lg sm:text-2xl font-bold text-[#240F06] tracking-wide leading-none">
+              <a href="#" className="flex items-center gap-2 group min-w-0">
+                <MatildaLogo className="w-8 h-8 sm:w-12 sm:h-12 flex-shrink-0 transform group-hover:scale-105 transition-transform" />
+                <div className="min-w-0">
+                  <h1 className="font-serif text-base sm:text-2xl font-bold text-[#240F06] tracking-wide leading-none truncate">
                     Matilda <span className="font-serif italic text-[#C9943B]">Bakeluxe</span>
                   </h1>
-                  <span className="font-cormorant text-[9px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] text-[#8C5C1B] uppercase font-bold block mt-0.5 sm:mt-1">
+                  <span className="font-cormorant text-[8px] sm:text-xs tracking-[0.15em] sm:tracking-[0.25em] text-[#8C5C1B] uppercase font-bold block mt-0.5 truncate">
                     Home-baked. Luxe-finished.
                   </span>
                 </div>
               </a>
 
               {/* Action Buttons */}
-              <div className="flex items-center gap-2 sm:gap-4">
+              <div className="flex items-center gap-1.5 sm:gap-4 flex-shrink-0">
                 <button
                   onClick={() => setIsFlyerOpen(true)}
-                  className="flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#3A1C0E] hover:bg-[#2A140A] text-[#FAF5ED] text-[11px] sm:text-xs font-bold border border-[#C9943B]/50 shadow-sm transition-all"
+                  className="flex items-center gap-1 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#3A1C0E] hover:bg-[#2A140A] text-[#FAF5ED] text-[11px] sm:text-xs font-bold border border-[#C9943B]/50 shadow-sm transition-all whitespace-nowrap"
                 >
                   <span className="text-[#E8BF6D]">📜</span>
-                  <span className="hidden sm:inline">Official </span>
-                  <span className="hidden xs:inline">Menu </span>
+                  <span className="hidden sm:inline">Official Menu </span>
                   <span>Flyer</span>
                 </button>
 
@@ -862,11 +861,12 @@
 
                 <button
                   onClick={() => setIsCartOpen(true)}
-                  className="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#C9943B] hover:bg-[#B3802E] text-[#1E0E07] text-xs sm:text-sm font-extrabold shadow-md active:scale-95 transition-all"
+                  className="flex items-center gap-1 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#C9943B] hover:bg-[#B3802E] text-[#1E0E07] text-xs sm:text-sm font-extrabold shadow-md active:scale-95 transition-all whitespace-nowrap"
                 >
-                  <span>🛍️ Bag</span>
+                  <span>🛍️</span>
+                  <span className="hidden xs:inline">Bag</span>
                   {totalBagCount > 0 && (
-                    <span className="px-1.5 py-0.2 bg-[#1E0E07] text-[#E8BF6D] rounded-full text-xs font-black">
+                    <span className="px-1.5 py-0.2 bg-[#1E0E07] text-[#E8BF6D] rounded-full text-[10px] font-black">
                       {totalBagCount}
                     </span>
                   )}
@@ -952,7 +952,7 @@
                     <span className="font-cormorant text-xs font-bold uppercase tracking-widest text-[#8C5C1B] block">
                       Step 1: Choose Your Portion
                     </span>
-                    <div className="grid grid-cols-3 gap-1.5 sm:gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
                       {MENU_SIZES.map((size, idx) => {
                         const isSelected = selectedTierIndex === idx;
                         return (
@@ -962,17 +962,19 @@
                               playSweetChime();
                               setSelectedTierIndex(idx);
                             }}
-                            className={`p-2 sm:p-3 rounded-xl sm:rounded-2xl border text-center transition-all ${
+                            className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border flex sm:flex-col items-center justify-between sm:justify-center transition-all min-h-[44px] ${
                               isSelected
-                                ? 'bg-[#3A1C0E] text-[#FAF5ED] border-[#C9943B] shadow-md scale-[1.02]'
+                                ? 'bg-[#3A1C0E] text-[#FAF5ED] border-[#C9943B] shadow-md scale-[1.01]'
                                 : 'bg-[#FAF5ED] text-[#240F06] border-gray-200 hover:border-[#C9943B]/50'
                             }`}
                           >
-                            <span className="font-serif font-bold text-[11px] sm:text-sm block leading-tight">
-                              <span className="sm:hidden">{size.shortName || size.name}</span>
-                              <span className="hidden sm:inline">{size.name}</span>
-                            </span>
-                            <span className={`text-[11px] sm:text-xs font-extrabold block mt-0.5 sm:mt-1 ${isSelected ? 'text-[#E8BF6D]' : 'text-[#8C5C1B]'}`}>
+                            <div className="flex items-center gap-2 sm:block sm:text-center">
+                              <span className="font-serif font-bold text-xs sm:text-sm block">{size.name}</span>
+                              <span className="sm:hidden text-[9px] px-2 py-0.5 rounded-full bg-[#FAF5ED]/20 text-[#E8BF6D] border border-[#E8BF6D]/30">
+                                {size.badge}
+                              </span>
+                            </div>
+                            <span className={`text-xs sm:text-xs font-extrabold block mt-0 sm:mt-1 ${isSelected ? 'text-[#E8BF6D]' : 'text-[#8C5C1B]'}`}>
                               Rs. {size.price}
                             </span>
                           </button>
