@@ -286,7 +286,7 @@ export default function CartDrawer({
               className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white font-bold text-xs shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2"
             >
               <span>📸</span>
-              <span>{copiedInstagram ? '✓ Order Copied! Opening Instagram...' : 'Order via Instagram DM (@matildabakeluxe)'}</span>
+              <span>{copiedInstagram ? '✓ Order Copied! Opening Instagram...' : 'Order via Instagram DM (@matilda.bakeluxe)'}</span>
             </button>
 
             {/* Clear Cart link */}

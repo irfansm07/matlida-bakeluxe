@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matilda Bakeluxe | Home-baked. Luxe-finished. | Official Boutique</title>
-  <meta name="description" content="Official website of Matilda Bakeluxe (@matildabakeluxe). Home-baked. Luxe-finished. Indulge in every slice of happiness with our iconic Matilda Chocolate Cake: 200g Box (Rs. 129), 500g Tin (Rs. 399), 1kg Bundle (Rs. 699). 100% Eggless.">
+  <meta name="description" content="Official website of Matilda Bakeluxe (@matilda.bakeluxe). Home-baked. Luxe-finished. Indulge in every slice of happiness with our iconic Matilda Chocolate Cake: 200g Box (Rs. 129), 500g Tin (Rs. 399), 1kg Bundle (Rs. 699). 100% Eggless.">
 
   <!-- Google Fonts: Cormorant Garamond, Playfair Display, Alex Brush, Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -145,10 +145,10 @@
       tagline: "Home-baked. Luxe-finished.",
       slogan: "Indulge in every slice of happiness!",
       productName: "Matilda Chocolate Cake",
-      instagramHandle: "@matildabakeluxe",
-      instagramUrl: "https://www.instagram.com/matildabakeluxe",
-      whatsappNumber: "+919876543210",
-      displayPhone: "+91 98765 43210",
+      instagramHandle: "@matilda.bakeluxe",
+      instagramUrl: "https://www.instagram.com/matilda.bakeluxe?gwpx=azc0dnA4cTQ4eHF5&utm_source=qr",
+      whatsappNumber: "+918885701118",
+      displayPhone: "+91 88857 01118",
     };
 
     // The ONLY 3 Real Sizes from the user's official menu card
@@ -1232,7 +1232,7 @@
                 {[
                   { q: "Is the Matilda Chocolate Cake 100% Eggless?", a: "Yes! Our cake is 100% pure vegetarian and eggless. We achieve that rich, cloud-soft, intensely moist chocolate fudge texture through pure Belgian couverture and slow-churned butter." },
                   { q: "How does the 15-second warm ganache trick work?", a: "Warm your slice or cake tin in the microwave for 15-20 seconds before eating. The glossy ganache liquefies into a velvety warm chocolate river!" },
-                  { q: "How do I place an order?", a: "Choose your portion size above and tap 'Order on WhatsApp' to send your pre-filled cart with 1 click, or DM us on Instagram @matildabakeluxe!" },
+                  { q: "How do I place an order?", a: "Choose your portion size above and tap 'Order on WhatsApp' to send your pre-filled cart with 1 click, or DM us on Instagram @matilda.bakeluxe!" },
                   { q: "How much advance notice is needed?", a: "Each cake is freshly baked and finished to order. Please order 4 to 6 hours in advance for same-day delivery." }
                 ].map(faq => (
                   <div key={faq.q} className="rounded-2xl border border-[#C9943B]/20 bg-white p-5 shadow-xs">
@@ -1286,7 +1286,7 @@
                       Taste The Ganache — Order Cake (From Rs. 129)
                     </a>
                     <a
-                      href={`https://wa.me/${BRAND.whatsappNumber.replace(/[^0-9]/g, '')}`}
+                      href={`https://wa.me/${BRAND.whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent("Hello Matilda Bakeluxe! I would like to inquire about ordering your artisanal Matilda Chocolate Cake. ✨")}`}
                       target="_blank"
                       className="px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2"
                     >
@@ -1316,7 +1316,7 @@
                 <span className="hidden xs:inline">•</span>
                 <button onClick={() => setIsFlyerOpen(true)} className="hover:text-[#E8BF6D] transition-colors">Menu Card Flyer</button>
                 <span className="hidden xs:inline">•</span>
-                <a href={`https://wa.me/${BRAND.whatsappNumber.replace(/[^0-9]/g, '')}`} target="_blank" className="text-emerald-400 font-semibold">
+                <a href={`https://wa.me/${BRAND.whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent("Hello Matilda Bakeluxe! I would like to place an order for the Matilda Chocolate Cake. ✨")}`} target="_blank" className="text-emerald-400 font-semibold">
                   WhatsApp Orders
                 </a>
               </div>

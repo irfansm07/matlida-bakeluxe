@@ -3,10 +3,10 @@ export const BRAND = {
   tagline: "Home-baked. Luxe-finished.",
   slogan: "Indulge in every slice of happiness!",
   productName: "Matilda Chocolate Cake",
-  instagramHandle: "@matildabakeluxe",
-  instagramUrl: "https://www.instagram.com/matildabakeluxe",
-  whatsappNumber: "+919876543210",
-  displayPhone: "+91 98765 43210",
+  instagramHandle: "@matilda.bakeluxe",
+  instagramUrl: "https://www.instagram.com/matilda.bakeluxe?gwpx=azc0dnA4cTQ4eHF5&utm_source=qr",
+  whatsappNumber: "+918885701118",
+  displayPhone: "+91 88857 01118",
   deliveryNote: "Freshly baked to order daily · 100% Eggless",
 };
 
@@ -59,7 +59,7 @@ export const FAQS = [
   },
   {
     q: "How do I order?",
-    a: "Select your preferred size right here on this page and tap 'Order on WhatsApp' to send your order with 1 click, or DM us on Instagram @matildabakeluxe!"
+    a: "Select your preferred size right here on this page and tap 'Order on WhatsApp' to send your order with 1 click, or DM us on Instagram @matilda.bakeluxe!"
   },
   {
     q: "How much advance notice is needed?",

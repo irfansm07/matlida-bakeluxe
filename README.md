@@ -2,7 +2,7 @@
 
 > *"Home-baked. Luxe-finished. Indulge in every slice of happiness!"*
 
-A classy, ultra-luxurious, and high-performance React website crafted for **Matilda Bakeluxe** (`@matildabakeluxe`). Designed with decadent chocolate and royal gold aesthetics, interactive 3D card tilt physics, ambient golden particle canvas, warm molten ganache simulator, customized portion & packaging tiers matching the official menu flyer, and seamless 1-tap WhatsApp and Instagram checkout!
+A classy, ultra-luxurious, and high-performance React website crafted for **Matilda Bakeluxe** (`@matilda.bakeluxe`). Designed with decadent chocolate and royal gold aesthetics, interactive 3D card tilt physics, ambient golden particle canvas, warm molten ganache simulator, customized portion & packaging tiers matching the official menu flyer, and seamless 1-tap WhatsApp and Instagram checkout!
 
 ---
 
@@ -33,13 +33,13 @@ A classy, ultra-luxurious, and high-performance React website crafted for **Mati
 
 4. **1-Tap Checkout Integrations**:
    - **Order via WhatsApp**: Formats an order summary with item breakdown, custom notes, delivery time slot, and opens WhatsApp ready to send with 1 click!
-   - **Order via Instagram DM**: Automatically copies the order summary to clipboard and opens `@matildabakeluxe` profile!
+   - **Order via Instagram DM**: Automatically copies the order summary to clipboard and opens `@matilda.bakeluxe` profile!
    - Direct phone contact and customer notes.
 
 5. **Full Patisserie Menu & Social Proof**:
    - Expanded artisan offerings: Warm Molten Fudge Jars, Sea Salt Caramel Brownie Slabs, Belgian Truffles, Custom Celebration Tier Cakes, and Cupcakes.
    - Live category tabs & search filter.
-   - Dedicated Instagram Showcase grid linking to `@matildabakeluxe`.
+   - Dedicated Instagram Showcase grid linking to `@matilda.bakeluxe`.
    - Verified customer reviews & FAQ accordion.
 
 ---
@@ -79,9 +79,9 @@ Open `http://localhost:3000` in your browser.
 To update your WhatsApp phone number or Instagram handle:
 - Open `src/data/menuData.js` (or the top of `index.html`) and edit:
   ```js
-  whatsappNumber: "+919876543210", // Put your real 10-digit number here
-  instagramHandle: "@matildabakeluxe",
-  instagramUrl: "https://www.instagram.com/matildabakeluxe",
+  whatsappNumber: "+918885701118", // Official 10-digit WhatsApp number
+  instagramHandle: "@matilda.bakeluxe",
+  instagramUrl: "https://www.instagram.com/matilda.bakeluxe?gwpx=azc0dnA4cTQ4eHF5&utm_source=qr",
   ```
 
 ---

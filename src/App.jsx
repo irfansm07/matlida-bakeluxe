@@ -111,7 +111,7 @@ export default function App() {
         {/* Customer Reviews */}
         <ReviewsSection />
 
-        {/* Instagram Showcase (@matildabakeluxe) */}
+        {/* Instagram Showcase (@matilda.bakeluxe) */}
         <InstagramShowcase />
 
         {/* FAQ Accordion */}
