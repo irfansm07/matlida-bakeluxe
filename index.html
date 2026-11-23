@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matilda Bakeluxe | Home-baked. Luxe-finished. | Official Boutique</title>
+  <meta name="description" content="Official website of Matilda Bakeluxe (@matildabakeluxe). Home-baked. Luxe-finished. Indulge in every slice of happiness with our iconic Matilda Chocolate Cake: 200g Box (Rs. 129), 500g Tin (Rs. 399), 1kg Bundle (Rs. 699). 100% Eggless.">
+
+  <!-- Google Fonts: Cormorant Garamond, Playfair Display, Alex Brush, Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            matilda: {
+              chocolateDark: '#1E0E07',
+              chocolateRich: '#2C140A',
+              chocolateMedium: '#432111',
+              chocolateLight: '#69381E',
+              goldFoil: '#C9943B',
+              goldLight: '#E8BF6D',
+              goldPale: '#F5DE9C',
+              creamLight: '#FAF5ED',
+              creamStripe: '#F4EAE0',
+              roseAccent: '#DF3859',
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            cormorant: ['Cormorant Garamond', 'Georgia', 'serif'],
+            script: ['Alex Brush', 'cursive'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React 18 & Babel Standalone -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    /* Vintage Luxe Striped Background matching the Flyer */
+    body {
+      background-color: #FAF5ED;
+      background-image: repeating-linear-gradient(
+        90deg,
+        #FAF5ED 0px,
+        #FAF5ED 44px,
+        #F3E9DD 44px,
+        #F3E9DD 88px
+      );
+      color: #240F06;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+    .font-cormorant { font-family: 'Cormorant Garamond', Georgia, serif; }
+    .font-script { font-family: 'Alex Brush', cursive; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 9px; }
+    ::-webkit-scrollbar-track { background: #F3E9DD; }
+    ::-webkit-scrollbar-thumb {
+      background: #C9943B;
+      border-radius: 9999px;
+      border: 2px solid #F3E9DD;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: #A87524; }
+
+    /* Ornate Gold & Chocolate Plaque Style (from Flyer) */
+    .plaque-gold {
+      background: linear-gradient(135deg, #3A1C0E 0%, #200E06 100%);
+      border: 2px solid #C9943B;
+      box-shadow: 
+        0 4px 15px rgba(32, 14, 6, 0.25),
+        inset 0 0 0 1.5px rgba(232, 191, 109, 0.4),
+        inset 0 0 12px rgba(0, 0, 0, 0.6);
+      border-radius: 20px;
+    }
+
+    .gold-foil-text {
+      background: linear-gradient(135deg, #FFF1D0 0%, #E8BF6D 40%, #C9943B 75%, #8C5C1B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* 100% Pure Veg Green Dot Badge */
+    .veg-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border: 1.8px solid #15803D;
+      border-radius: 4px;
+      background: #FFFFFF;
+    }
+    .veg-circle {
+      width: 8px;
+      height: 8px;
+      background: #15803D;
+      border-radius: 9999px;
+    }
+
+    @keyframes steamFloat {
+      0% { transform: translateY(0px) scale(0.9); opacity: 0; }
+      50% { opacity: 0.6; }
+      100% { transform: translateY(-30px) scale(1.3); opacity: 0; }
+    }
+    .steam-particle {
+      animation: steamFloat 2.5s ease-out infinite;
+    }
+  </style>
+</head>
+<body class="selection:bg-[#C9943B] selection:text-white">
+
+  <div id="root"></div>
+
+  <!-- React Application Source -->
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // --- OFFICIAL BRAND & MENU TIERS (Exact Match to Flyer) ---
+    const BRAND = {
+      name: "Matilda Bakeluxe",
+      tagline: "Home-baked. Luxe-finished.",
+      slogan: "Indulge in every slice of happiness!",
+      productName: "Matilda Chocolate Cake",
+      instagramHandle: "@matildabakeluxe",
+      instagramUrl: "https://www.instagram.com/matildabakeluxe",
+      whatsappNumber: "+919876543210",
+      displayPhone: "+91 98765 43210",
+    };
+
+    // The ONLY 3 Real Sizes from the user's official menu card
+    const MENU_SIZES = [
+      {
+        id: "200g-box",
+        name: "200g Box",
+        price: 129,
+        weight: "200 grams",
+        servings: "1 – 2 Servings",
+        packaging: "Gold-Embossed Gift Box",
+        badge: "Personal Indulgence",
+        description: "Our signature moist chocolate fudge cake nestled inside an elegant chocolate-brown presentation box with golden Matilda seal. Perfect personal treat or luxury gifting.",
+        highlights: ["Individual Portion", "Custom Gift Box", "Dark Chocolate Curls"],
+        illustrationType: "box"
+      },
+      {
+        id: "500g-tin",
+        name: "500g cake tin",
+        price: 399,
+        weight: "500 grams",
+        servings: "4 – 6 Servings",
+        packaging: "Circular Metallic Tin",
+        badge: "Most Loved ⭐",
+        description: "Baked directly inside our sleek airtight metallic baking tin to seal in moisture. Steeping in decadent glossy ganache and topped with hand-rolled chocolate curls.",
+        highlights: ["Bestseller", "Airtight Metallic Tin", "Effortless 15s Reheat"],
+        illustrationType: "tin"
+      },
+      {
+        id: "1kg-bundle",
+        name: "1kg (two 500g cake tins)",
+        price: 699,
+        originalPrice: 798,
+        savings: "Save Rs. 99",
+        weight: "1,000 grams (1 kg)",
+        servings: "8 – 12 Servings",
+        packaging: "Two 500g Tins in Ribbon Carrier",
+        badge: "Celebration Value 🎉",
+        description: "Double the sweet happiness! Two complete 500g tins of our signature chocolate cake bundled in luxury packaging. Perfect for parties, gatherings, or sharing.",
+        highlights: ["Party Bundle", "Two Complete 500g Tins", "Save Rs. 99"],
+        illustrationType: "twin"
+      }
+    ];
+
+    // --- AUDIO CHIME SYNTHESIZER ---
+    let audioCtx = null;
+    let soundEnabled = true;
+
+    function playSweetChime() {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx && typeof window !== 'undefined') {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) audioCtx = new AudioContext();
+        }
+        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+        if (!audioCtx) return;
+
+        const now = audioCtx.currentTime;
+        const notes = [1046.50, 1318.51, 1567.98, 1975.53]; // C6, E6, G6, B6
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+          gain.gain.setValueAtTime(0, now + idx * 0.05);
+          gain.gain.linearRampToValueAtTime(0.08, now + idx * 0.05 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.05 + 0.9);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.05);
+          osc.stop(now + idx * 0.05 + 0.95);
+        });
+      } catch (e) {}
+    }
+
+    // Soft liquid chocolate droplet sound (Web Audio API)
+    function playDripSound() {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx && typeof window !== 'undefined') {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) audioCtx = new AudioContext();
+        }
+        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(550, now);
+        osc.frequency.exponentialRampToValueAtTime(1150, now + 0.09);
+        gain.gain.setValueAtTime(0.04, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.095);
+      } catch (e) {}
+    }
+
+    // --- RECREATED EXACT MATILDA CREST LOGO ---
+    function MatildaLogo({ className = "w-14 h-14" }) {
+      return (
+        <svg viewBox="0 0 120 120" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="crestGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFF1D0" />
+              <stop offset="40%" stopColor="#E8BF6D" />
+              <stop offset="75%" stopColor="#C9943B" />
+              <stop offset="100%" stopColor="#8C5C1B" />
+            </linearGradient>
+          </defs>
+          {/* Concentric Borders */}
+          <circle cx="60" cy="60" r="56" stroke="url(#crestGold)" strokeWidth="2.2" fill="none" />
+          <circle cx="60" cy="60" r="52" stroke="url(#crestGold)" strokeWidth="1" strokeDasharray="3 3" fill="none" opacity="0.8" />
+          <circle cx="60" cy="60" r="46" stroke="url(#crestGold)" strokeWidth="1.2" fill="none" />
+          {/* Circular Text */}
+          <path id="topArc" d="M 22 60 A 38 38 0 0 1 98 60" fill="none" />
+          <text fill="url(#crestGold)" fontSize="9.5" fontWeight="700" letterSpacing="4.5" fontFamily="Playfair Display, serif">
+            <textPath href="#topArc" startOffset="50%" textAnchor="middle">
+              MATILDA
+            </textPath>
+          </text>
+          <path id="bottomArc" d="M 100 60 A 40 40 0 0 1 20 60" fill="none" />
+          <text fill="url(#crestGold)" fontSize="7.5" fontWeight="600" letterSpacing="3.5" fontFamily="Plus Jakarta Sans, sans-serif">
+            <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
+              BAKELUXE
+            </textPath>
+          </text>
+          {/* Monogram M with Whisk */}
+          <g transform="translate(60, 56)">
+            <ellipse cx="0" cy="-5" rx="7" ry="12" stroke="url(#crestGold)" strokeWidth="1.4" fill="none" />
+            <ellipse cx="0" cy="-5" rx="3.5" ry="12" stroke="url(#crestGold)" strokeWidth="1" fill="none" opacity="0.8" />
+            <line x1="0" y1="-18" x2="0" y2="8" stroke="url(#crestGold)" strokeWidth="1.5" />
+            <rect x="-2.5" y="8" width="5" height="2.5" rx="1" fill="url(#crestGold)" />
+            <line x1="0" y1="10" x2="0" y2="21" stroke="url(#crestGold)" strokeWidth="2.2" strokeLinecap="round" />
+          </g>
+          {/* Monogram M */}
+          <path
+            d="M 38 78 L 38 48 L 43 48 L 52 64 L 60 48 L 65 48 L 74 64 L 82 48 L 86 48 L 86 78 L 80 78 L 80 57 L 73 70 L 68 70 L 60 56 L 60 78 Z"
+            fill="url(#crestGold)"
+            opacity="0.95"
+          />
+        </svg>
+      );
+    }
+
+    // --- INTERACTIVE MOLTEN CHOCOLATE DRIP & CONTINUOUS FALLING DROPLETS ENGINE ---
+    function MoltenChocolateDripSystem({ onDropCountChange }) {
+      const canvasRef = useRef(null);
+      const [dropsStacked, setDropsStacked] = useState(12); // starts with 12 stacked
+      const [badgeBottom, setBadgeBottom] = useState(16);
+
+      useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let animId;
+        let w = (canvas.width = window.innerWidth);
+        let h = (canvas.height = window.innerHeight);
+
+        const onResize = () => {
+          if (!canvas) return;
+          w = canvas.width = window.innerWidth;
+          h = canvas.height = window.innerHeight;
+          updateBadgePos();
+        };
+        window.addEventListener('resize', onResize);
+
+        const getHeaderBottom = () => {
+          const header = document.querySelector('header');
+          if (header) {
+            const rect = header.getBoundingClientRect();
+            return Math.max(0, rect.bottom);
+          }
+          return 86;
+        };
+
+        const getFooterTop = () => {
+          const footer = document.getElementById('site-footer') || document.querySelector('footer');
+          if (footer) {
+            const rect = footer.getBoundingClientRect();
+            return rect.top;
+          }
+          return h;
+        };
+
+        const updateBadgePos = () => {
+          const footer = document.getElementById('site-footer') || document.querySelector('footer');
+          if (footer) {
+            const rect = footer.getBoundingClientRect();
+            const winH = window.innerHeight;
+            if (rect.top < winH) {
+              // Footer is in view; keep badge 22px above footer top so it never overlaps
+              setBadgeBottom(Math.max(16, winH - rect.top + 22));
+            } else {
+              setBadgeBottom(16);
+            }
+          }
+        };
+        window.addEventListener('scroll', updateBadgePos, { passive: true });
+        updateBadgePos();
+
+        // Active droplet state
+        let drop = {
+          state: 'forming', // forming, falling
+          t: 0,
+          x: 52,
+          y: 150,
+          vy: 1.8,
+          radius: 3,
+          stretchY: 0
+        };
+
+        // Ripples upon hitting the bottom
+        let ripples = [];
+        let poolHeight = 32; // initial baseline pool at bottom
+        let time = 0;
+
+        const render = () => {
+          ctx.clearRect(0, 0, w, h);
+          time += 0.035;
+
+          const topY = getHeaderBottom();
+          const dripOrigin = { x: 52, y: topY + 65 };
+          const footerTop = getFooterTop();
+          const isFooterInView = footerTop <= h + 80;
+          const currentFloor = isFooterInView ? (footerTop - poolHeight * 0.5) : (h + 30);
+
+          // 1. TOP-LEFT HANGING MOLTEN CHOCOLATE MASS (Clinging directly below Header)
+          ctx.save();
+          const chocGrad = ctx.createLinearGradient(0, topY, 260, topY + 90);
+          chocGrad.addColorStop(0, '#190803');
+          chocGrad.addColorStop(0.35, '#35160A');
+          chocGrad.addColorStop(0.75, '#220D05');
+          chocGrad.addColorStop(1, '#110502');
+
+          ctx.fillStyle = chocGrad;
+          ctx.beginPath();
+          ctx.moveTo(0, topY);
+          ctx.lineTo(290, topY);
+          ctx.bezierCurveTo(260, topY + 18, 230, topY + 28, 210, topY + 28);
+          ctx.bezierCurveTo(190, topY + 28, 175, topY + 56, 155, topY + 56);
+          ctx.bezierCurveTo(140, topY + 56, 130, topY + 20, 110, topY + 20);
+          ctx.bezierCurveTo(95, topY + 20, 85, topY + 46, 72, topY + 46);
+          // Main Long Drip hanging down to dripOrigin
+          ctx.bezierCurveTo(64, topY + 46, 58, topY + 56, dripOrigin.x, dripOrigin.y);
+          ctx.bezierCurveTo(46, topY + 56, 38, topY + 36, 22, topY + 36);
+          ctx.bezierCurveTo(10, topY + 36, 5, topY + 52, 0, topY + 62);
+          ctx.closePath();
+          ctx.fill();
+
+          // Gloss Specular Highlight Line along bottom edge of drip
+          ctx.strokeStyle = '#8A4A25';
+          ctx.lineWidth = 2.5;
+          ctx.beginPath();
+          ctx.moveTo(0, topY + 2);
+          ctx.lineTo(280, topY + 2);
+          ctx.bezierCurveTo(252, topY + 19, 225, topY + 29, 208, topY + 29);
+          ctx.bezierCurveTo(188, topY + 29, 173, topY + 57, 153, topY + 57);
+          ctx.bezierCurveTo(138, topY + 57, 128, topY + 21, 108, topY + 21);
+          ctx.bezierCurveTo(93, topY + 21, 83, topY + 47, 70, topY + 47);
+          ctx.bezierCurveTo(62, topY + 47, 56, topY + 57, dripOrigin.x, dripOrigin.y);
+          ctx.stroke();
+
+          // Amber gold sparkle on the drip curve
+          ctx.fillStyle = '#E8BF6D';
+          ctx.beginPath();
+          ctx.ellipse(dripOrigin.x, dripOrigin.y - 4, 3.5, 1.5, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          // 2. DROPLET FORMING & FALLING CYCLE
+          if (drop.state === 'forming') {
+            drop.x = dripOrigin.x;
+            drop.t += 0.012; // Slow, realistic viscous formation (~2.2 seconds)
+            drop.radius = 3 + drop.t * 5.5; // grows up to 8.5px
+            drop.stretchY = Math.pow(drop.t, 2.2) * 26; // viscous stretching downward
+
+            // Draw elastic connecting neck
+            ctx.save();
+            ctx.fillStyle = '#281107';
+            ctx.beginPath();
+            ctx.moveTo(dripOrigin.x - 3 * (1 - drop.t * 0.4), dripOrigin.y);
+            ctx.quadraticCurveTo(
+              dripOrigin.x, dripOrigin.y + drop.stretchY * 0.5,
+              dripOrigin.x - drop.radius * 0.85, dripOrigin.y + drop.stretchY
+            );
+            ctx.arc(dripOrigin.x, dripOrigin.y + drop.stretchY, drop.radius, Math.PI, 0, true);
+            ctx.quadraticCurveTo(
+              dripOrigin.x, dripOrigin.y + drop.stretchY * 0.5,
+              dripOrigin.x + 3 * (1 - drop.t * 0.4), dripOrigin.y
+            );
+            ctx.fill();
+
+            // Shiny specular highlight on forming droplet
+            ctx.fillStyle = 'rgba(255, 235, 185, 0.85)';
+            ctx.beginPath();
+            ctx.arc(
+              dripOrigin.x - drop.radius * 0.35,
+              dripOrigin.y + drop.stretchY - drop.radius * 0.25,
+              drop.radius * 0.28,
+              0, Math.PI * 2
+            );
+            ctx.fill();
+            ctx.restore();
+
+            // When fully stretched, snap neck and fall!
+            if (drop.t >= 1) {
+              drop.state = 'falling';
+              drop.y = dripOrigin.y + drop.stretchY;
+              drop.vy = 2.2;
+            }
+          } else if (drop.state === 'falling') {
+            drop.vy += 0.42; // viscous gravity acceleration
+            drop.y += drop.vy;
+
+            // Draw falling glossy chocolate teardrop
+            ctx.save();
+            ctx.fillStyle = '#240F06';
+            ctx.beginPath();
+            ctx.moveTo(drop.x, drop.y - drop.radius * 2);
+            ctx.bezierCurveTo(
+              drop.x - drop.radius * 1.3, drop.y,
+              drop.x - drop.radius, drop.y + drop.radius,
+              drop.x, drop.y + drop.radius
+            );
+            ctx.bezierCurveTo(
+              drop.x + drop.radius, drop.y + drop.radius,
+              drop.x + drop.radius * 1.3, drop.y,
+              drop.x, drop.y - drop.radius * 2
+            );
+            ctx.fill();
+
+            // Liquid gloss sheen along the edge
+            ctx.fillStyle = 'rgba(255, 235, 185, 0.8)';
+            ctx.beginPath();
+            ctx.ellipse(
+              drop.x - drop.radius * 0.3,
+              drop.y,
+              drop.radius * 0.28,
+              drop.radius * 0.65,
+              -0.15, 0, Math.PI * 2
+            );
+            ctx.fill();
+            ctx.restore();
+
+            // Impact with bottom chocolate pool!
+            if (drop.y >= currentFloor) {
+              playDripSound();
+
+              // Spawn concentric liquid ripple rings if visible
+              if (currentFloor <= h) {
+                ripples.push({
+                  x: drop.x,
+                  y: currentFloor,
+                  radius: 3,
+                  maxRadius: 36,
+                  alpha: 0.85
+                });
+              }
+
+              // Stack the pool thicker with every drop!
+              poolHeight = Math.min(50, poolHeight + 0.6);
+              setDropsStacked(prev => {
+                const next = prev + 1;
+                if (onDropCountChange) onDropCountChange(next);
+                return next;
+              });
+
+              // Reset to form next drop
+              drop = {
+                state: 'forming',
+                t: 0,
+                x: dripOrigin.x,
+                y: dripOrigin.y,
+                vy: 1.8,
+                radius: 3,
+                stretchY: 0
+              };
+            }
+          }
+
+          // 3. EXPANDING RIPPLE WAVES AT IMPACT POINT
+          for (let i = ripples.length - 1; i >= 0; i--) {
+            const r = ripples[i];
+            r.radius += 1.4;
+            r.alpha -= 0.028;
+            if (r.alpha <= 0) {
+              ripples.splice(i, 1);
+            } else {
+              ctx.save();
+              ctx.strokeStyle = `rgba(201, 148, 59, ${r.alpha})`;
+              ctx.lineWidth = 2.2;
+              ctx.beginPath();
+              ctx.ellipse(r.x, r.y, r.radius, r.radius * 0.35, 0, 0, Math.PI * 2);
+              ctx.stroke();
+              ctx.restore();
+            }
+          }
+
+          // 4. STACKED BOTTOM MOLTEN CHOCOLATE POOL (Strictly directly above Footer)
+          if (isFooterInView) {
+            ctx.save();
+            const poolBaseY = footerTop;
+            const poolSurfaceY = poolBaseY - poolHeight;
+
+            const bottomGrad = ctx.createLinearGradient(0, poolSurfaceY - 18, 0, poolBaseY);
+            bottomGrad.addColorStop(0, '#3E1A0C');
+            bottomGrad.addColorStop(0.4, '#240F06');
+            bottomGrad.addColorStop(1, '#150702');
+            ctx.fillStyle = bottomGrad;
+
+            ctx.beginPath();
+            ctx.moveTo(0, poolBaseY);
+            ctx.lineTo(0, poolSurfaceY);
+            for (let px = 0; px <= w; px += 24) {
+              const wave = Math.sin(time * 1.6 + px * 0.015) * 4.5 + Math.cos(time * 0.9 + px * 0.03) * 2;
+              ctx.lineTo(px, poolSurfaceY + wave);
+            }
+            ctx.lineTo(w, poolBaseY);
+            ctx.closePath();
+            ctx.fill();
+
+            // Golden Gloss Rim along the top surface of the pool
+            ctx.strokeStyle = 'rgba(232, 191, 109, 0.85)';
+            ctx.lineWidth = 2.4;
+            ctx.beginPath();
+            for (let px = 0; px <= w; px += 24) {
+              const wave = Math.sin(time * 1.6 + px * 0.015) * 4.5 + Math.cos(time * 0.9 + px * 0.03) * 2;
+              if (px === 0) ctx.moveTo(px, poolSurfaceY + wave);
+              else ctx.lineTo(px, poolSurfaceY + wave);
+            }
+            ctx.stroke();
+            ctx.restore();
+          }
+
+          animId = requestAnimationFrame(render);
+        };
+
+        render();
+
+        return () => {
+          window.removeEventListener('resize', onResize);
+          window.removeEventListener('scroll', updateBadgePos);
+          cancelAnimationFrame(animId);
+        };
+      }, []);
+
+      return (
+        <>
+          <canvas
+            ref={canvasRef}
+            className="fixed inset-0 pointer-events-none z-30"
+          />
+
+          {/* Real-time Stacked Ganache Droplet Counter Badge (Glides above Footer) */}
+          <div
+            className="fixed left-4 z-40 pointer-events-auto transition-[bottom] duration-150 ease-out"
+            style={{ bottom: `${badgeBottom}px` }}
+          >
+            <div className="px-3.5 py-1.5 rounded-full bg-[#200E06]/95 border border-[#C9943B]/60 text-[#E8BF6D] text-[11px] font-bold shadow-2xl backdrop-blur-md flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#E8BF6D] animate-ping" />
+              <span>🍯 {dropsStacked} Drops of Belgian Ganache Stacked</span>
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    // --- PACKAGING ILLUSTRATIONS (Matching Flyer Exactly) ---
+    function IllustrationBox({ className = "w-28 h-28" }) {
+      return (
+        <svg viewBox="0 0 140 120" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="boxG1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#5A2E17" />
+              <stop offset="100%" stopColor="#2E150A" />
+            </linearGradient>
+            <linearGradient id="boxG2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#432110" />
+              <stop offset="100%" stopColor="#1C0B04" />
+            </linearGradient>
+            <linearGradient id="goldSealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFF1D0" />
+              <stop offset="50%" stopColor="#E8BF6D" />
+              <stop offset="100%" stopColor="#8C5C1B" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="70" cy="105" rx="52" ry="10" fill="#240F06" opacity="0.2" />
+          {/* Top Flap */}
+          <polygon points="20,45 70,22 120,45 70,68" fill="url(#boxG1)" stroke="#220D05" strokeWidth="1.5" />
+          {/* Chocolate curls on top */}
+          <path d="M 50,33 Q 58,22 66,35 Q 74,20 82,32" stroke="#180702" strokeWidth="5.5" strokeLinecap="round" fill="none" />
+          <path d="M 56,29 Q 63,18 70,28" stroke="#3D1A0A" strokeWidth="4" strokeLinecap="round" fill="none" />
+          {/* Left & Right Faces */}
+          <polygon points="20,45 70,68 70,102 20,82" fill="url(#boxG2)" stroke="#1A0A04" strokeWidth="1.5" />
+          <polygon points="70,68 120,45 120,82 70,102" fill="#291207" stroke="#1A0A04" strokeWidth="1.5" />
+          {/* Gold Matilda Seal */}
+          <circle cx="70" cy="85" r="13" fill="url(#boxG2)" stroke="url(#goldSealGrad)" strokeWidth="1.5" />
+          <circle cx="70" cy="85" r="10" stroke="url(#goldSealGrad)" strokeWidth="0.8" strokeDasharray="2 2" fill="none" />
+          <text x="70" y="89" fill="url(#goldSealGrad)" fontSize="9" fontWeight="bold" fontFamily="serif" textAnchor="middle">M</text>
+        </svg>
+      );
+    }
+
+    function IllustrationTin({ className = "w-28 h-28" }) {
+      return (
+        <svg viewBox="0 0 140 120" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="silverTin" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#7B7874" />
+              <stop offset="30%" stopColor="#E2DED9" />
+              <stop offset="60%" stopColor="#FFFFFF" />
+              <stop offset="85%" stopColor="#9C9893" />
+              <stop offset="100%" stopColor="#55524E" />
+            </linearGradient>
+            <linearGradient id="cakeGanache" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#4A2312" />
+              <stop offset="50%" stopColor="#2A1207" />
+              <stop offset="100%" stopColor="#150702" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="70" cy="102" rx="58" ry="12" fill="#240F06" opacity="0.22" />
+          {/* Tin Rim and Wall */}
+          <path d="M 12 60 L 12 85 C 12 102 128 102 128 85 L 128 60 Z" fill="url(#silverTin)" stroke="#4A4744" strokeWidth="1.2" />
+          <ellipse cx="70" cy="60" rx="58" ry="21" fill="url(#silverTin)" stroke="#8A8682" strokeWidth="1.5" />
+          {/* Cake Top Surface with Glossy Ganache */}
+          <ellipse cx="70" cy="61" rx="51" ry="17" fill="url(#cakeGanache)" stroke="#180702" strokeWidth="1" />
+          {/* Ganache Gloss Highlight */}
+          <path d="M 35 58 Q 70 51 102 59 Q 70 54 35 58 Z" fill="#8C4D26" opacity="0.65" />
+          {/* Dark Chocolate Curls */}
+          <g stroke="#1A0702" strokeWidth="4.5" strokeLinecap="round" fill="none">
+            <path d="M 55 60 Q 64 53 72 61" />
+            <path d="M 68 58 Q 78 51 86 60" />
+            <path d="M 62 64 Q 71 67 80 62" />
+          </g>
+          <circle cx="53" cy="61" r="1.5" fill="#E8BF6D" />
+          <circle cx="88" cy="59" r="1.5" fill="#E8BF6D" />
+        </svg>
+      );
+    }
+
+    function IllustrationTwinTins({ className = "w-32 h-28" }) {
+      return (
+        <svg viewBox="0 0 160 120" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="silverTin2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#7B7874" />
+              <stop offset="30%" stopColor="#E2DED9" />
+              <stop offset="60%" stopColor="#FFFFFF" />
+              <stop offset="85%" stopColor="#9C9893" />
+              <stop offset="100%" stopColor="#55524E" />
+            </linearGradient>
+            <linearGradient id="cakeGanache2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#4A2312" />
+              <stop offset="100%" stopColor="#150702" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="50" cy="98" rx="42" ry="10" fill="#240F06" opacity="0.18" />
+          <ellipse cx="110" cy="98" rx="42" ry="10" fill="#240F06" opacity="0.18" />
+          
+          {/* Left Tin */}
+          <g transform="translate(-10, 0)">
+            <path d="M 18 60 L 18 84 C 18 98 102 98 102 84 L 102 60 Z" fill="url(#silverTin2)" stroke="#4A4744" strokeWidth="1" />
+            <ellipse cx="60" cy="60" rx="42" ry="16" fill="url(#silverTin2)" stroke="#8A8682" strokeWidth="1.2" />
+            <ellipse cx="60" cy="61" rx="36" ry="13" fill="url(#cakeGanache2)" />
+            <path d="M 48 60 Q 60 55 72 61" stroke="#1A0702" strokeWidth="3.5" strokeLinecap="round" />
+          </g>
+
+          {/* Right Tin */}
+          <g transform="translate(50, 4)">
+            <path d="M 18 60 L 18 84 C 18 98 102 98 102 84 L 102 60 Z" fill="url(#silverTin2)" stroke="#4A4744" strokeWidth="1" />
+            <ellipse cx="60" cy="60" rx="42" ry="16" fill="url(#silverTin2)" stroke="#8A8682" strokeWidth="1.2" />
+            <ellipse cx="60" cy="61" rx="36" ry="13" fill="url(#cakeGanache2)" />
+            <path d="M 48 60 Q 60 55 72 61" stroke="#1A0702" strokeWidth="3.5" strokeLinecap="round" />
+          </g>
+
+          {/* Luxury Gold Silk Tie */}
+          <path d="M 50 78 Q 85 68 120 80" stroke="#C9943B" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+          <circle cx="86" cy="74" r="5" fill="#C9943B" />
+          <circle cx="86" cy="74" r="2" fill="#FFF1D0" />
+        </svg>
+      );
+    }
+
+    // --- MAIN REACT APPLICATION ---
+    function App() {
+      const [selectedTierIndex, setSelectedTierIndex] = useState(1); // 500g tin is default
+      const [quantities, setQuantities] = useState({ "200g-box": 1, "500g-tin": 1, "1kg-bundle": 1 });
+      const [cart, setCart] = useState([]);
+      const [isCartOpen, setIsCartOpen] = useState(false);
+      const [isFlyerOpen, setIsFlyerOpen] = useState(false);
+      const [warmSimActive, setWarmSimActive] = useState(false);
+      const [toastMsg, setToastMsg] = useState(null);
+
+      const activeSize = MENU_SIZES[selectedTierIndex];
+
+      const showToast = (msg) => {
+        setToastMsg(msg);
+        setTimeout(() => setToastMsg(null), 3200);
+      };
+
+      const updateQty = (id, delta) => {
+        setQuantities(prev => ({
+          ...prev,
+          [id]: Math.max(1, (prev[id] || 1) + delta)
+        }));
+      };
+
+      const handleAddSizeToBag = (sizeObj) => {
+        playSweetChime();
+        const qty = quantities[sizeObj.id] || 1;
+        setCart(prev => {
+          const idx = prev.findIndex(item => item.id === sizeObj.id);
+          if (idx > -1) {
+            const updated = [...prev];
+            updated[idx].quantity += qty;
+            return updated;
+          }
+          return [...prev, { ...sizeObj, quantity: qty }];
+        });
+        showToast(`✨ Added ${qty}x ${sizeObj.name} to your bag!`);
+      };
+
+      const handleDirectWhatsAppOrder = (sizeObj) => {
+        playSweetChime();
+        const qty = quantities[sizeObj.id] || 1;
+        const total = sizeObj.price * qty;
+        const text = `🧁 *NEW ORDER — MATILDA BAKELUXE*\n----------------------------------------\n*Item:* Matilda Chocolate Cake (${sizeObj.name})\n*Quantity:* ${qty}\n*Total Price:* Rs. ${total}\n*Packaging:* ${sizeObj.packaging}\n*Diet:* 100% Pure Veg & Eggless\n----------------------------------------\nHello, I would like to order this fresh for delivery! Please confirm availability. ✨`;
+        const cleanNumber = BRAND.whatsappNumber.replace(/[^0-9]/g, '');
+        window.open(`https://wa.me/${cleanNumber}?text=${encodeURIComponent(text)}`, '_blank');
+      };
+
+      const totalBagCount = cart.reduce((acc, i) => acc + i.quantity, 0);
+      const totalBagPrice = cart.reduce((acc, i) => acc + (i.price * i.quantity), 0);
+
+      const handleCartWhatsAppCheckout = () => {
+        playSweetChime();
+        let msg = `🧁 *NEW ORDER — MATILDA BAKELUXE*\n----------------------------------------\n*Order Summary:*\n`;
+        cart.forEach((item, idx) => {
+          msg += `${idx + 1}. *Matilda Chocolate Cake (${item.name})* x ${item.quantity} = Rs. ${item.price * item.quantity}\n`;
+        });
+        msg += `----------------------------------------\n*Total Amount:* Rs. ${totalBagPrice}\n*Diet:* 100% Eggless (Pure Veg)\n----------------------------------------\nHello, I want to confirm this order for delivery! ✨`;
+        const cleanNumber = BRAND.whatsappNumber.replace(/[^0-9]/g, '');
+        window.open(`https://wa.me/${cleanNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+      };
+
+      return (
+        <div className="min-h-screen flex flex-col justify-between relative overflow-hidden">
+          
+          {/* Physics-Based Molten Chocolate Drips & Continuous Falling Droplets Engine */}
+          <MoltenChocolateDripSystem />
+
+          {/* Top Vintage Gold Ticker */}
+          <div className="bg-[#240F06] text-[#FAF5ED] py-2 px-4 border-b border-[#C9943B]/30 text-xs text-center tracking-wider relative z-40 flex items-center justify-center gap-3">
+            <span className="text-[#C9943B]">★</span>
+            <span className="font-serif italic text-[#E8BF6D]">Home-baked. Luxe-finished.</span>
+            <span>•</span>
+            <span className="hidden sm:inline">100% Pure Veg & Eggless</span>
+            <span>•</span>
+            <a href={BRAND.instagramUrl} target="_blank" className="text-[#E8BF6D] hover:underline font-bold">
+              {BRAND.instagramHandle}
+            </a>
+            <span className="text-[#C9943B]">★</span>
+          </div>
+
+          {/* Header */}
+          <header className="sticky top-0 z-40 bg-[#FAF5ED]/95 backdrop-blur-md border-b border-[#C9943B]/20 py-3.5 shadow-sm">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+              
+              {/* Crest & Title */}
+              <a href="#" className="flex items-center gap-3 group">
+                <MatildaLogo className="w-12 h-12 transform group-hover:scale-105 transition-transform" />
+                <div>
+                  <h1 className="font-serif text-2xl font-bold text-[#240F06] tracking-wide leading-none">
+                    Matilda <span className="font-serif italic text-[#C9943B]">Bakeluxe</span>
+                  </h1>
+                  <span className="font-cormorant text-xs tracking-[0.25em] text-[#8C5C1B] uppercase font-bold block mt-1">
+                    Home-baked. Luxe-finished.
+                  </span>
+                </div>
+              </a>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2.5 sm:gap-4">
+                <button
+                  onClick={() => setIsFlyerOpen(true)}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#3A1C0E] hover:bg-[#2A140A] text-[#FAF5ED] text-xs font-bold border border-[#C9943B]/50 shadow-sm transition-all"
+                >
+                  <span className="text-[#E8BF6D]">📜</span>
+                  <span className="hidden sm:inline">Official</span>
+                  <span>Menu Flyer</span>
+                </button>
+
+                <a
+                  href={BRAND.instagramUrl}
+                  target="_blank"
+                  className="hidden md:flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-[#C9943B]/30 text-[#240F06] hover:text-[#C9943B] text-xs font-semibold shadow-xs transition-all"
+                >
+                  <span>📷</span>
+                  <span>{BRAND.instagramHandle}</span>
+                </a>
+
+                <button
+                  onClick={() => setIsCartOpen(true)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#C9943B] hover:bg-[#B3802E] text-[#1E0E07] text-xs sm:text-sm font-extrabold shadow-md active:scale-95 transition-all"
+                >
+                  <span>🛍️ Bag</span>
+                  {totalBagCount > 0 && (
+                    <span className="px-1.5 py-0.2 bg-[#1E0E07] text-[#E8BF6D] rounded-full text-xs font-black">
+                      {totalBagCount}
+                    </span>
+                  )}
+                </button>
+              </div>
+
+            </div>
+          </header>
+
+          <main className="flex-1 relative z-20">
+            
+            {/* HERO SECTION: The Star Cake & Interactive Stage */}
+            <section className="pt-8 pb-12 px-4 max-w-6xl mx-auto">
+              
+              {/* Header Title Matching Flyer Calligraphy */}
+              <div className="text-center space-y-2 mb-10">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#C9943B]/40 text-[#8C5C1B] text-xs font-bold shadow-xs">
+                  <div className="veg-box"><div className="veg-circle" /></div>
+                  <span>100% Pure Vegetarian & Eggless</span>
+                </div>
+
+                <h2 className="font-serif text-4xl sm:text-6xl font-extrabold text-[#240F06] tracking-tight">
+                  Matilda <span className="font-script font-normal text-[#C9943B] text-5xl sm:text-7xl block sm:inline">Chocolate Cake</span>
+                </h2>
+
+                <p className="font-script text-3xl sm:text-4xl text-[#8C5C1B] pt-1">
+                  "{BRAND.slogan}"
+                </p>
+
+                <p className="font-cormorant text-lg sm:text-xl text-[#432111] max-w-xl mx-auto italic font-medium">
+                  "Home-baked with love, bathed in rich Belgian ganache, finished with artisan chocolate curls."
+                </p>
+              </div>
+
+              {/* Breathtaking Split Presentation */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white/80 backdrop-blur-sm rounded-3xl border-2 border-[#C9943B]/30 p-6 sm:p-10 shadow-xl">
+                
+                {/* Left: The Decadent Cake Slice with Warm Ganache Simulator */}
+                <div className="lg:col-span-5 relative space-y-4">
+                  <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl border-4 border-white bg-[#1A0A04]">
+                    <img
+                      src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=85"
+                      alt="Matilda Chocolate Cake Slice with Glossy Ganache"
+                      className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                    />
+
+                    {/* Warm Ganache Overlay Animation */}
+                    {warmSimActive && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#240F06]/90 via-transparent to-transparent flex items-end justify-center pb-4">
+                        <div className="px-4 py-1.5 rounded-full bg-[#E8BF6D] text-[#240F06] text-xs font-extrabold shadow-lg animate-bounce flex items-center gap-1.5">
+                          <span>♨️</span>
+                          <span>Warm Molten Ganache Flowing!</span>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 text-[11px] font-bold text-[#15803D] flex items-center gap-1.5 shadow-sm">
+                      <div className="veg-box"><div className="veg-circle" /></div>
+                      <span>100% Eggless</span>
+                    </div>
+                  </div>
+
+                  {/* 15-Second Warm Ganache Button */}
+                  <button
+                    onClick={() => {
+                      playSweetChime();
+                      setWarmSimActive(true);
+                      showToast("♨️ Simulating 15-second microwave reheat! Ganache melts into warm lava.");
+                      setTimeout(() => setWarmSimActive(false), 4000);
+                    }}
+                    className="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-[#FAF5ED] to-[#F3E9DD] hover:bg-[#F3E9DD] border border-[#C9943B]/40 text-[#432111] text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+                  >
+                    <span>♨️</span>
+                    <span>{warmSimActive ? 'Ganache Melting Softly...' : 'Try 15-Second Warm Ganache Simulator'}</span>
+                  </button>
+                </div>
+
+                {/* Right: The Interactive 3-Size Selector & Ordering */}
+                <div className="lg:col-span-7 space-y-6">
+                  
+                  {/* Tier Switcher Pills */}
+                  <div className="space-y-2">
+                    <span className="font-cormorant text-xs font-bold uppercase tracking-widest text-[#8C5C1B] block">
+                      Step 1: Choose Your Portion
+                    </span>
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                      {MENU_SIZES.map((size, idx) => {
+                        const isSelected = selectedTierIndex === idx;
+                        return (
+                          <button
+                            key={size.id}
+                            onClick={() => {
+                              playSweetChime();
+                              setSelectedTierIndex(idx);
+                            }}
+                            className={`p-3 rounded-2xl border text-center transition-all ${
+                              isSelected
+                                ? 'bg-[#3A1C0E] text-[#FAF5ED] border-[#C9943B] shadow-md scale-[1.02]'
+                                : 'bg-[#FAF5ED] text-[#240F06] border-gray-200 hover:border-[#C9943B]/50'
+                            }`}
+                          >
+                            <span className="font-serif font-bold text-xs sm:text-sm block">{size.name}</span>
+                            <span className={`text-xs font-extrabold block mt-0.5 ${isSelected ? 'text-[#E8BF6D]' : 'text-[#8C5C1B]'}`}>
+                              Rs. {size.price}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Active Selected Tier Display (Plaque Style) */}
+                  <div className="plaque-gold p-6 text-[#FAF5ED] space-y-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="space-y-1">
+                        <span className="px-2.5 py-0.5 rounded-full bg-[#E8BF6D]/20 text-[#E8BF6D] border border-[#E8BF6D]/40 text-[10px] font-bold uppercase tracking-wider">
+                          {activeSize.badge}
+                        </span>
+                        <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#FFF1D0]">
+                          {activeSize.name}
+                        </h3>
+                        <span className="text-xs text-[#E8BF6D] block font-semibold">
+                          👥 {activeSize.servings} · 📦 {activeSize.packaging}
+                        </span>
+                      </div>
+
+                      {/* Ornate Price Plaque */}
+                      <div className="text-right">
+                        <span className="text-[10px] text-[#FAF5ED]/60 uppercase tracking-widest block">Price</span>
+                        <span className="font-serif text-3xl sm:text-4xl font-extrabold gold-foil-text">
+                          Rs. {activeSize.price}
+                        </span>
+                        {activeSize.savings && (
+                          <span className="text-[11px] font-bold text-emerald-400 block">
+                            {activeSize.savings}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-[#FAF5ED]/80 leading-relaxed font-light">
+                      {activeSize.description}
+                    </p>
+
+                    {/* Quantity Stepper & Dual Action Buttons */}
+                    <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                      
+                      {/* Stepper */}
+                      <div className="flex items-center justify-between w-full sm:w-auto bg-black/40 px-3 py-2 rounded-xl border border-white/20 gap-3">
+                        <span className="text-xs text-white/70">Qty:</span>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => updateQty(activeSize.id, -1)}
+                            className="w-7 h-7 rounded-lg bg-white/10 text-white font-bold hover:bg-white/20 text-xs flex items-center justify-center"
+                          >
+                            -
+                          </button>
+                          <span className="font-bold text-sm px-2 text-[#E8BF6D]">
+                            {quantities[activeSize.id] || 1}
+                          </span>
+                          <button
+                            onClick={() => updateQty(activeSize.id, 1)}
+                            className="w-7 h-7 rounded-lg bg-white/10 text-white font-bold hover:bg-white/20 text-xs flex items-center justify-center"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* WhatsApp Direct Order Button */}
+                      <button
+                        onClick={() => handleDirectWhatsAppOrder(activeSize)}
+                        className="flex-1 w-full py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2"
+                      >
+                        <span>💬 Order on WhatsApp</span>
+                      </button>
+
+                      {/* Add to Bag Button */}
+                      <button
+                        onClick={() => handleAddSizeToBag(activeSize)}
+                        className="flex-1 w-full py-3 px-5 rounded-xl bg-[#C9943B] hover:bg-[#B3802E] text-[#1E0E07] font-extrabold text-xs shadow-md transition-all flex items-center justify-center gap-1.5"
+                      >
+                        <span>+ Add to Bag</span>
+                      </button>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </section>
+
+            {/* THE 3 REAL SIZES SHOWCASE (Ornate Plaques matching the Flyer) */}
+            <section className="py-12 px-4 max-w-6xl mx-auto">
+              <div className="text-center space-y-2 mb-10">
+                <span className="font-cormorant text-xs font-bold uppercase tracking-widest text-[#8C5C1B] bg-white px-3.5 py-1 rounded-full border border-[#C9943B]/30">
+                  Official Menu Card
+                </span>
+                <h3 className="font-serif text-3xl sm:text-4xl font-extrabold text-[#240F06]">
+                  The 3 Signature Options
+                </h3>
+                <p className="text-xs sm:text-sm text-[#69381E]">
+                  Hand-baked daily with premium Belgian couverture cocoa · 100% Pure Veg & Eggless
+                </p>
+              </div>
+
+              {/* 3 Horizontal Plaque Cards (Matching the Flyer Layout) */}
+              <div className="space-y-4">
+                {MENU_SIZES.map((size) => {
+                  return (
+                    <div
+                      key={size.id}
+                      className="bg-white/90 backdrop-blur-sm rounded-3xl border-2 border-[#C9943B]/30 p-5 sm:p-7 shadow-luxury flex flex-col md:flex-row items-center justify-between gap-6 hover:border-[#C9943B] transition-all"
+                    >
+                      {/* Left: Illustration */}
+                      <div className="flex-shrink-0 flex items-center justify-center w-28 h-28">
+                        {size.illustrationType === "box" && <IllustrationBox />}
+                        {size.illustrationType === "tin" && <IllustrationTin />}
+                        {size.illustrationType === "twin" && <IllustrationTwinTins />}
+                      </div>
+
+                      {/* Middle: Details */}
+                      <div className="flex-1 text-center md:text-left space-y-2">
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
+                          <h4 className="font-serif font-bold text-2xl text-[#240F06]">{size.name}</h4>
+                          <span className="px-2.5 py-0.5 rounded-full bg-[#FAF5ED] border border-[#C9943B]/30 text-[11px] font-bold text-[#8C5C1B]">
+                            {size.servings}
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-extrabold">
+                            {size.badge}
+                          </span>
+                        </div>
+                        <p className="text-xs text-gray-600 leading-relaxed max-w-lg font-light">
+                          {size.description}
+                        </p>
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-[11px] text-[#8C5C1B] font-semibold">
+                          <span>📦 {size.packaging}</span>
+                          <span>•</span>
+                          <span>🌱 100% Eggless</span>
+                        </div>
+                      </div>
+
+                      {/* Right: Plaque with Price & Direct Order */}
+                      <div className="flex-shrink-0 flex flex-col items-center sm:items-end gap-3 w-full md:w-auto">
+                        <div className="plaque-gold px-8 py-3 text-center min-w-[170px]">
+                          <span className="font-serif text-3xl font-extrabold gold-foil-text block">
+                            Rs. {size.price}
+                          </span>
+                          {size.savings && (
+                            <span className="text-[10px] font-bold text-emerald-400 block -mt-1">
+                              {size.savings}
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 w-full">
+                          <button
+                            onClick={() => handleDirectWhatsAppOrder(size)}
+                            className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all shadow-xs"
+                          >
+                            💬 WhatsApp
+                          </button>
+                          <button
+                            onClick={() => handleAddSizeToBag(size)}
+                            className="py-2.5 px-3 rounded-xl bg-[#FAF5ED] hover:bg-[#F3E9DD] text-[#432111] font-bold text-xs border border-[#C9943B]/40 transition-all"
+                          >
+                            + Bag
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Bottom Script Banner (from Flyer) */}
+              <div className="text-center pt-10 pb-4">
+                <p className="font-script text-4xl sm:text-5xl text-[#C9943B]">
+                  "Indulge in every slice of happiness!" 🤎
+                </p>
+              </div>
+
+            </section>
+
+            {/* THE ARTISAN STANDARDS (Why Matilda Cake is Special) */}
+            <section className="py-12 px-4 max-w-5xl mx-auto">
+              <div className="bg-[#240F06] text-[#FAF5ED] rounded-3xl p-8 sm:p-12 border border-[#C9943B]/40 shadow-xl space-y-8">
+                
+                <div className="text-center space-y-2 max-w-xl mx-auto">
+                  <span className="font-cormorant text-xs font-bold uppercase tracking-widest text-[#E8BF6D]">
+                    The Artisan Philosophy
+                  </span>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#FFF1D0]">
+                    Crafted Without Compromise
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#FAF5ED]/75 font-light">
+                    Every cake begins with honest, high-end ingredients:
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {[
+                    { icon: "🍫", title: "Belgian Couverture", desc: "Pure dark chocolate and Dutch alkalized cocoa for intense, deep chocolate notes." },
+                    { icon: "🧈", title: "Slow-Churned Butter", desc: "Real fresh dairy butter for a cloud-soft crumb that melts upon contact." },
+                    { icon: "🌱", title: "100% Eggless Mastery", desc: "Vegetarian perfection achieved without compromising moisture or sponge density." },
+                    { icon: "♨️", title: "15-Second Secret", desc: "Microwave for 15s to turn the ganache into a warm, glossy chocolate river." },
+                  ].map(p => (
+                    <div key={p.title} className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2 text-center">
+                      <span className="text-3xl block">{p.icon}</span>
+                      <h4 className="font-serif font-bold text-sm text-[#E8BF6D]">{p.title}</h4>
+                      <p className="text-[11px] text-[#FAF5ED]/70 leading-relaxed font-light">{p.desc}</p>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+            </section>
+
+            {/* INSTAGRAM ATELIER SECTION */}
+            <section className="py-12 px-4 max-w-6xl mx-auto">
+              <div className="rounded-3xl bg-white/90 backdrop-blur-sm border-2 border-[#C9943B]/30 p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+                <div className="space-y-2">
+                  <div className="inline-flex items-center gap-2 text-xs font-bold text-purple-700">
+                    <span>📷</span>
+                    <span>Official Instagram Atelier</span>
+                  </div>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#240F06]">
+                    Follow {BRAND.instagramHandle}
+                  </h3>
+                  <p className="text-xs text-gray-600 max-w-md font-light">
+                    Watch our daily fresh baking, warm ganache drizzles, and tag us in your sweetest celebrations to be featured!
+                  </p>
+                </div>
+
+                <a
+                  href={BRAND.instagramUrl}
+                  target="_blank"
+                  className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white font-bold text-xs shadow-md hover:scale-105 active:scale-95 transition-all whitespace-nowrap flex items-center gap-2"
+                >
+                  <span>Follow on Instagram →</span>
+                </a>
+              </div>
+            </section>
+
+            {/* FAQS */}
+            <section className="py-10 px-4 max-w-4xl mx-auto">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-center text-[#240F06] mb-6">
+                Frequently Asked Questions
+              </h3>
+              <div className="space-y-3">
+                {[
+                  { q: "Is the Matilda Chocolate Cake 100% Eggless?", a: "Yes! Our cake is 100% pure vegetarian and eggless. We achieve that rich, cloud-soft, intensely moist chocolate fudge texture through pure Belgian couverture and slow-churned butter." },
+                  { q: "How does the 15-second warm ganache trick work?", a: "Warm your slice or cake tin in the microwave for 15-20 seconds before eating. The glossy ganache liquefies into a velvety warm chocolate river!" },
+                  { q: "How do I place an order?", a: "Choose your portion size above and tap 'Order on WhatsApp' to send your pre-filled cart with 1 click, or DM us on Instagram @matildabakeluxe!" },
+                  { q: "How much advance notice is needed?", a: "Each cake is freshly baked and finished to order. Please order 4 to 6 hours in advance for same-day delivery." }
+                ].map(faq => (
+                  <div key={faq.q} className="rounded-2xl border border-[#C9943B]/20 bg-white p-5 shadow-xs">
+                    <h4 className="font-serif font-bold text-base text-[#240F06]">{faq.q}</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed mt-2 font-light">{faq.a}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* 8. THE STACKED MOLTEN CHOCOLATE RESERVOIR (Last Section) */}
+            <section className="py-12 px-4 max-w-5xl mx-auto text-center space-y-6">
+              <div className="rounded-3xl bg-gradient-to-b from-[#2E1408] to-[#150702] border-2 border-[#C9943B] p-8 sm:p-12 text-[#FAF5ED] shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-36 bg-[#C9943B]/20 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="relative z-10 space-y-3">
+                  <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#3D1E0E] border border-[#C9943B]/50 text-xs font-bold text-[#E8BF6D]">
+                    <span className="w-2 h-2 rounded-full bg-[#E8BF6D] animate-ping" />
+                    <span>Pure Belgian Cocoa Ganache Reservoir</span>
+                  </div>
+
+                  <h3 className="font-serif text-3xl sm:text-4xl font-extrabold text-[#FFF1D0]">
+                    Where Every Falling Drop Gathers
+                  </h3>
+
+                  <p className="font-cormorant text-base sm:text-lg text-[#FAF5ED]/80 max-w-xl mx-auto italic font-light">
+                    "From the top corner drip to the bottom pool, every drop of molten chocolate stacks up into our signature glossy ganache bath."
+                  </p>
+
+                  <div className="pt-4 max-w-md mx-auto space-y-3">
+                    <div className="p-4 rounded-2xl bg-black/40 border border-[#C9943B]/30 flex items-center justify-between text-xs">
+                      <span className="text-[#E8BF6D] font-bold flex items-center gap-2">
+                        <span>🍫</span>
+                        <span>Continuous Chocolate Drip:</span>
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-[#C9943B] text-[#1E0E07] font-extrabold">
+                        Active & Flowing Drop by Drop
+                      </span>
+                    </div>
+
+                    <p className="text-[11px] text-[#FAF5ED]/60 font-light">
+                      Watch the left side of your screen: chocolate drops continuously swell, detach, and fall slowly into the bottom pool!
+                    </p>
+                  </div>
+
+                  <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+                    <a
+                      href="#menu"
+                      className="px-8 py-3.5 rounded-full bg-[#C9943B] hover:bg-[#B3802E] text-[#1E0E07] font-extrabold text-xs sm:text-sm shadow-xl transition-all"
+                    >
+                      Taste The Ganache — Order Cake (From Rs. 129)
+                    </a>
+                    <a
+                      href={`https://wa.me/${BRAND.whatsappNumber.replace(/[^0-9]/g, '')}`}
+                      target="_blank"
+                      className="px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2"
+                    >
+                      <span>💬 Chat on WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+          </main>
+
+          {/* Luxury Footer */}
+          <footer id="site-footer" className="bg-[#1E0E07] text-[#FAF5ED] border-t-2 border-[#C9943B]/40 py-10 px-4 mt-12 relative z-40">
+            <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-[#FAF5ED]/70">
+              <div className="flex items-center gap-3">
+                <MatildaLogo className="w-10 h-10" />
+                <div>
+                  <span className="font-serif font-bold text-base text-[#FAF5ED] block">Matilda Bakeluxe</span>
+                  <span className="text-[10px] text-[#C9943B]">{BRAND.tagline}</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 text-xs">
+                <a href={BRAND.instagramUrl} target="_blank" className="hover:text-[#E8BF6D] transition-colors">{BRAND.instagramHandle}</a>
+                <span>•</span>
+                <button onClick={() => setIsFlyerOpen(true)} className="hover:text-[#E8BF6D] transition-colors">Menu Card Flyer</button>
+                <span>•</span>
+                <a href={`https://wa.me/${BRAND.whatsappNumber.replace(/[^0-9]/g, '')}`} target="_blank" className="text-emerald-400 font-semibold">
+                  WhatsApp Orders
+                </a>
+              </div>
+
+              <div className="text-[11px] text-[#FAF5ED]/50 text-center sm:text-right">
+                © {new Date().getFullYear()} Matilda Bakeluxe. Crafted with pure Belgian cocoa.
+              </div>
+            </div>
+          </footer>
+
+          {/* SLIDE-OUT SHOPPING BAG DRAWER */}
+          {isCartOpen && (
+            <div className="fixed inset-0 z-50 overflow-hidden bg-black/60 backdrop-blur-xs flex justify-end">
+              <div className="relative w-full max-w-md bg-white shadow-2xl flex flex-col h-full animate-slideInRight">
+                
+                <div className="p-5 border-b border-gray-100 flex items-center justify-between bg-[#FAF5ED]">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">🛍️</span>
+                    <h3 className="font-serif font-bold text-lg text-[#240F06]">Your Shopping Bag</h3>
+                  </div>
+                  <button onClick={() => setIsCartOpen(false)} className="p-2 text-gray-400 hover:text-gray-600">✕</button>
+                </div>
+
+                <div className="flex-1 overflow-y-auto p-5 space-y-3">
+                  {cart.length === 0 ? (
+                    <div className="text-center py-20 space-y-3">
+                      <span className="text-5xl block animate-bounce">🧁</span>
+                      <h4 className="font-serif font-bold text-lg text-[#240F06]">Your bag is empty</h4>
+                      <p className="text-xs text-gray-500">Pick a 200g Box, 500g Tin, or 1kg Bundle!</p>
+                    </div>
+                  ) : (
+                    cart.map(item => (
+                      <div key={item.id} className="p-4 rounded-2xl border border-gray-200 bg-[#FAF5ED] flex items-center justify-between">
+                        <div>
+                          <h4 className="font-serif font-bold text-sm text-[#240F06]">Matilda Chocolate Cake ({item.name})</h4>
+                          <span className="text-xs font-bold text-[#C9943B]">Rs. {item.price * item.quantity}</span>
+                          <span className="text-[10px] text-gray-500 block">Portions: {item.quantity}</span>
+                        </div>
+                        <button
+                          onClick={() => setCart(cart.filter(i => i.id !== item.id))}
+                          className="text-gray-400 hover:text-red-500 text-xs p-2"
+                        >
+                          🗑️
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
+
+                {cart.length > 0 && (
+                  <div className="p-5 border-t border-gray-100 bg-gray-50 space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-gray-500 uppercase font-bold tracking-wider">Total</span>
+                      <span className="font-serif text-2xl font-extrabold text-[#240F06]">Rs. {totalBagPrice}</span>
+                    </div>
+
+                    <button
+                      onClick={handleCartWhatsAppCheckout}
+                      className="w-full py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md flex items-center justify-center gap-2"
+                    >
+                      <span>💬 Send Order via WhatsApp</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* OFFICIAL FLYER MODAL */}
+          {isFlyerOpen && (
+            <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs">
+              <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden my-4">
+                <div className="p-4 border-b border-gray-100 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span>📜</span>
+                    <h4 className="font-serif font-bold text-base text-[#240F06]">Official Matilda Bakeluxe Menu</h4>
+                  </div>
+                  <button onClick={() => setIsFlyerOpen(false)} className="p-1.5 text-gray-400 hover:text-gray-600">✕</button>
+                </div>
+
+                <div className="p-4 bg-[#FAF5ED] flex items-center justify-center">
+                  <img src="./assets/matilda-menu-flyer.jpg" alt="Official Menu Flyer" className="w-full max-w-sm rounded-xl shadow-lg border border-gray-200" />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TOAST NOTIFICATION */}
+          {toastMsg && (
+            <div className="fixed bottom-6 right-6 z-50 animate-bounce">
+              <div className="px-5 py-3 rounded-2xl bg-[#240F06] text-[#FAF5ED] text-xs font-semibold shadow-2xl border border-[#C9943B]">
+                {toastMsg}
+              </div>
+            </div>
+          )}
+
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
