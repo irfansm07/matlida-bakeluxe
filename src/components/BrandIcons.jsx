@@ -1,85 +1,23 @@
 import React from 'react';
 
-// Official Matilda Bakeluxe Crest Logo SVG
-export function MatildaLogo({ className = "w-16 h-16", variant = "gold" }) {
+// Official Matilda Bakeluxe Crest Logo
+export function MatildaLogo({ className = "w-16 h-16", withRing = true, alt = "Matilda Bakeluxe Official Crest" }) {
   return (
-    <svg viewBox="0 0 200 200" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        {/* Luxury Gold Gradients */}
-        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFF2D6" />
-          <stop offset="35%" stopColor="#E5BE6E" />
-          <stop offset="70%" stopColor="#C9943B" />
-          <stop offset="100%" stopColor="#87571B" />
-        </linearGradient>
-        <linearGradient id="chocolateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#4A2511" />
-          <stop offset="100%" stopColor="#1E0B04" />
-        </linearGradient>
-        <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
-      </defs>
-
-      {/* Outer Ring */}
-      <circle cx="100" cy="100" r="92" stroke="url(#goldGrad)" strokeWidth="2.5" fill="none" />
-      <circle cx="100" cy="100" r="86" stroke="url(#goldGrad)" strokeWidth="1" strokeDasharray="3 3" fill="none" opacity="0.8" />
-      <circle cx="100" cy="100" r="76" stroke="url(#goldGrad)" strokeWidth="1.5" fill="none" />
-
-      {/* Star Accents */}
-      <path d="M 28 100 L 31 102 L 30 105 L 28 103 L 26 105 L 27 102 Z" fill="url(#goldGrad)" />
-      <path d="M 172 100 L 175 102 L 174 105 L 172 103 L 170 105 L 171 102 Z" fill="url(#goldGrad)" />
-
-      {/* Arched Text: MATILDA (top) and BAKELUXE (bottom) */}
-      <path id="topTextArc" d="M 36 100 A 64 64 0 0 1 164 100" fill="none" />
-      <text fill="url(#goldGrad)" fontSize="13.5" fontWeight="700" letterSpacing="6" fontFamily="Playfair Display, serif">
-        <textPath href="#topTextArc" startOffset="50%" textAnchor="middle">
-          MATILDA
-        </textPath>
-      </text>
-
-      <path id="bottomTextArc" d="M 166 100 A 66 66 0 0 1 34 100" fill="none" />
-      <text fill="url(#goldGrad)" fontSize="11" fontWeight="600" letterSpacing="4.5" fontFamily="Plus Jakarta Sans, sans-serif">
-        <textPath href="#bottomTextArc" startOffset="50%" textAnchor="middle">
-          BAKELUXE
-        </textPath>
-      </text>
-
-      {/* Wheat / Botanical Sprigs on Lower Sides */}
-      <g stroke="url(#goldGrad)" strokeWidth="1.2" fill="none" opacity="0.9">
-        {/* Left Sprig */}
-        <path d="M 52 125 Q 60 135 70 142" />
-        <ellipse cx="55" cy="128" rx="3.5" ry="2" transform="rotate(-30 55 128)" fill="url(#goldGrad)" />
-        <ellipse cx="61" cy="133" rx="3.5" ry="2" transform="rotate(-15 61 133)" fill="url(#goldGrad)" />
-        <ellipse cx="68" cy="139" rx="3.5" ry="2" transform="rotate(10 68 139)" fill="url(#goldGrad)" />
-
-        {/* Right Sprig */}
-        <path d="M 148 125 Q 140 135 130 142" />
-        <ellipse cx="145" cy="128" rx="3.5" ry="2" transform="rotate(30 145 128)" fill="url(#goldGrad)" />
-        <ellipse cx="139" cy="133" rx="3.5" ry="2" transform="rotate(15 139 133)" fill="url(#goldGrad)" />
-        <ellipse cx="132" cy="139" rx="3.5" ry="2" transform="rotate(-10 132 139)" fill="url(#goldGrad)" />
-      </g>
-
-      {/* Center Monogram M with Whisk Integration */}
-      {/* Whisk handle and wires */}
-      <g transform="translate(100, 88)">
-        {/* Whisk Loops */}
-        <ellipse cx="0" cy="-6" rx="9" ry="16" stroke="url(#goldGrad)" strokeWidth="1.5" fill="none" opacity="0.9" />
-        <ellipse cx="0" cy="-6" rx="5" ry="16" stroke="url(#goldGrad)" strokeWidth="1.2" fill="none" opacity="0.85" />
-        <line x1="0" y1="-22" x2="0" y2="10" stroke="url(#goldGrad)" strokeWidth="1.8" />
-        {/* Whisk Handle Collar */}
-        <rect x="-3" y="10" width="6" height="3" rx="1" fill="url(#goldGrad)" />
-        <line x1="0" y1="13" x2="0" y2="28" stroke="url(#goldGrad)" strokeWidth="2.5" strokeLinecap="round" />
-      </g>
-
-      {/* Monogram "M" Silhouette in Bold Serif Style */}
-      <path
-        d="M 66 128 L 66 78 L 74 78 L 86 102 L 98 78 L 102 78 L 114 102 L 126 78 L 134 78 L 134 128 L 124 128 L 124 94 L 112 118 L 106 118 L 94 94 L 94 128 Z"
-        fill="url(#goldGrad)"
-        opacity="0.95"
-      />
-    </svg>
+    <div className={`relative flex items-center justify-center rounded-full flex-shrink-0 transition-transform duration-300 hover:scale-105 group/logo ${className}`}>
+      {withRing && (
+        <div className="absolute -inset-[2px] rounded-full bg-gradient-to-tr from-[#8C5C1B] via-[#E8BF6D] to-[#C9943B] opacity-90 shadow-sm" />
+      )}
+      <div className="relative w-full h-full rounded-full overflow-hidden bg-[#FAF5ED] border border-[#FAF5ED] shadow-inner flex items-center justify-center">
+        <img
+          src="/assets/matilda-logo.jpg"
+          alt={alt}
+          className="w-full h-full object-cover scale-[1.03] transition-transform duration-500 group-hover/logo:scale-110"
+          loading="eager"
+        />
+        {/* Subtle luxury glass sheen */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/10 to-amber-100/25 pointer-events-none" />
+      </div>
+    </div>
   );
 }
 

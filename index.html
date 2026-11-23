@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matilda Bakeluxe | Home-baked. Luxe-finished. | Official Boutique</title>
   <meta name="description" content="Official website of Matilda Bakeluxe (@matilda.bakeluxe). Home-baked. Luxe-finished. Indulge in every slice of happiness with our iconic Matilda Chocolate Cake: 200g Box (Rs. 129), 500g Tin (Rs. 399), 1kg Bundle (Rs. 699). 100% Eggless.">
+  <link rel="icon" type="image/jpeg" href="./assets/matilda-logo.jpg">
+  <link rel="apple-touch-icon" href="./assets/matilda-logo.jpg">
 
   <!-- Google Fonts: Cormorant Garamond, Playfair Display, Alex Brush, Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -253,50 +255,24 @@
       } catch (e) {}
     }
 
-    // --- RECREATED EXACT MATILDA CREST LOGO ---
-    function MatildaLogo({ className = "w-14 h-14" }) {
+    // --- OFFICIAL MATILDA BAKELUXE EMBLEM LOGO ---
+    function MatildaLogo({ className = "w-12 h-12", withRing = true, alt = "Matilda Bakeluxe Official Crest" }) {
       return (
-        <svg viewBox="0 0 120 120" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="crestGold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF1D0" />
-              <stop offset="40%" stopColor="#E8BF6D" />
-              <stop offset="75%" stopColor="#C9943B" />
-              <stop offset="100%" stopColor="#8C5C1B" />
-            </linearGradient>
-          </defs>
-          {/* Concentric Borders */}
-          <circle cx="60" cy="60" r="56" stroke="url(#crestGold)" strokeWidth="2.2" fill="none" />
-          <circle cx="60" cy="60" r="52" stroke="url(#crestGold)" strokeWidth="1" strokeDasharray="3 3" fill="none" opacity="0.8" />
-          <circle cx="60" cy="60" r="46" stroke="url(#crestGold)" strokeWidth="1.2" fill="none" />
-          {/* Circular Text */}
-          <path id="topArc" d="M 22 60 A 38 38 0 0 1 98 60" fill="none" />
-          <text fill="url(#crestGold)" fontSize="9.5" fontWeight="700" letterSpacing="4.5" fontFamily="Playfair Display, serif">
-            <textPath href="#topArc" startOffset="50%" textAnchor="middle">
-              MATILDA
-            </textPath>
-          </text>
-          <path id="bottomArc" d="M 100 60 A 40 40 0 0 1 20 60" fill="none" />
-          <text fill="url(#crestGold)" fontSize="7.5" fontWeight="600" letterSpacing="3.5" fontFamily="Plus Jakarta Sans, sans-serif">
-            <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
-              BAKELUXE
-            </textPath>
-          </text>
-          {/* Monogram M with Whisk */}
-          <g transform="translate(60, 56)">
-            <ellipse cx="0" cy="-5" rx="7" ry="12" stroke="url(#crestGold)" strokeWidth="1.4" fill="none" />
-            <ellipse cx="0" cy="-5" rx="3.5" ry="12" stroke="url(#crestGold)" strokeWidth="1" fill="none" opacity="0.8" />
-            <line x1="0" y1="-18" x2="0" y2="8" stroke="url(#crestGold)" strokeWidth="1.5" />
-            <rect x="-2.5" y="8" width="5" height="2.5" rx="1" fill="url(#crestGold)" />
-            <line x1="0" y1="10" x2="0" y2="21" stroke="url(#crestGold)" strokeWidth="2.2" strokeLinecap="round" />
-          </g>
-          {/* Monogram M */}
-          <path
-            d="M 38 78 L 38 48 L 43 48 L 52 64 L 60 48 L 65 48 L 74 64 L 82 48 L 86 48 L 86 78 L 80 78 L 80 57 L 73 70 L 68 70 L 60 56 L 60 78 Z"
-            fill="url(#crestGold)"
-            opacity="0.95"
-          />
-        </svg>
+        <div className={`relative flex items-center justify-center rounded-full flex-shrink-0 transition-transform duration-300 hover:scale-105 group/logo ${className}`}>
+          {withRing && (
+            <div className="absolute -inset-[2px] rounded-full bg-gradient-to-tr from-[#8C5C1B] via-[#E8BF6D] to-[#C9943B] opacity-90 shadow-sm" />
+          )}
+          <div className="relative w-full h-full rounded-full overflow-hidden bg-[#FAF5ED] border border-[#FAF5ED] shadow-inner flex items-center justify-center">
+            <img
+              src="./assets/matilda-logo.jpg"
+              alt={alt}
+              className="w-full h-full object-cover scale-[1.03] transition-transform duration-500 group-hover/logo:scale-110"
+              loading="eager"
+            />
+            {/* Subtle luxury glass sheen */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/10 to-amber-100/25 pointer-events-none" />
+          </div>
+        </div>
       );
     }
 
@@ -833,13 +809,18 @@
             <div className="max-w-6xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-2">
               
               {/* Crest & Title */}
-              <a href="#" className="flex items-center gap-2 group min-w-0">
-                <MatildaLogo className="w-8 h-8 sm:w-12 sm:h-12 flex-shrink-0 transform group-hover:scale-105 transition-transform" />
-                <div className="min-w-0">
-                  <h1 className="font-serif text-base sm:text-2xl font-bold text-[#240F06] tracking-wide leading-none truncate">
-                    Matilda <span className="font-serif italic text-[#C9943B]">Bakeluxe</span>
-                  </h1>
-                  <span className="font-cormorant text-[8px] sm:text-xs tracking-[0.15em] sm:tracking-[0.25em] text-[#8C5C1B] uppercase font-bold block mt-0.5 truncate">
+              <a href="#" className="flex items-center gap-2.5 sm:gap-3.5 group min-w-0">
+                <MatildaLogo className="w-9 h-9 sm:w-13 sm:h-13 flex-shrink-0 shadow-md transition-transform group-hover:scale-105" />
+                <div className="min-w-0 flex flex-col justify-center">
+                  <div className="flex items-baseline gap-1 sm:gap-1.5">
+                    <span className="font-serif text-base sm:text-2xl font-bold text-[#240F06] tracking-wide leading-none truncate">
+                      Matilda
+                    </span>
+                    <span className="font-serif italic text-base sm:text-2xl font-bold text-[#C9943B] leading-none truncate">
+                      Bakeluxe
+                    </span>
+                  </div>
+                  <span className="font-cormorant text-[8px] sm:text-xs tracking-[0.16em] sm:tracking-[0.25em] text-[#8C5C1B] uppercase font-bold block mt-1 truncate">
                     Home-baked. Luxe-finished.
                   </span>
                 </div>
@@ -888,10 +869,17 @@
             <section className="pt-8 pb-12 px-4 max-w-6xl mx-auto">
               
               {/* Header Title Matching Flyer Calligraphy */}
-              <div className="text-center space-y-2 mb-8 sm:mb-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#C9943B]/40 text-[#8C5C1B] text-[11px] sm:text-xs font-bold shadow-xs">
-                  <div className="veg-box"><div className="veg-circle" /></div>
-                  <span>100% Pure Vegetarian & Eggless</span>
+              <div className="text-center space-y-3 mb-8 sm:mb-10 flex flex-col items-center">
+                <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-3.5 py-1.5 rounded-full bg-white/95 border border-[#C9943B]/40 text-[#8C5C1B] text-[11px] sm:text-xs font-bold shadow-xs">
+                  <div className="flex items-center gap-1.5">
+                    <MatildaLogo className="w-5 h-5 sm:w-6 sm:h-6" withRing={false} />
+                    <span className="font-cormorant tracking-wider uppercase font-semibold text-[#8C5C1B]">Official Matilda Crest</span>
+                  </div>
+                  <span className="text-[#C9943B] hidden xs:inline">•</span>
+                  <div className="flex items-center gap-1.5">
+                    <div className="veg-box"><div className="veg-circle" /></div>
+                    <span>100% Pure Vegetarian & Eggless</span>
+                  </div>
                 </div>
 
                 <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#240F06] tracking-tight">
@@ -932,6 +920,12 @@
                     <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 text-[11px] font-bold text-[#15803D] flex items-center gap-1.5 shadow-sm">
                       <div className="veg-box"><div className="veg-circle" /></div>
                       <span>100% Eggless</span>
+                    </div>
+
+                    {/* Floating Luxury Official Seal Medallion */}
+                    <div className="absolute bottom-3 right-3 flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#1E0E07]/90 backdrop-blur-md border border-[#E8BF6D]/60 shadow-xl text-[#FAF5ED]">
+                      <MatildaLogo className="w-5 h-5 sm:w-6 sm:h-6" />
+                      <span className="font-serif text-[10px] sm:text-[11px] font-bold text-[#E8BF6D]">Authentic Seal</span>
                     </div>
                   </div>
 
@@ -1199,24 +1193,27 @@
 
             {/* INSTAGRAM ATELIER SECTION */}
             <section className="py-12 px-4 max-w-6xl mx-auto">
-              <div className="rounded-3xl bg-white/90 backdrop-blur-sm border-2 border-[#C9943B]/30 p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-                <div className="space-y-2">
-                  <div className="inline-flex items-center gap-2 text-xs font-bold text-purple-700">
-                    <span>📷</span>
-                    <span>Official Instagram Atelier</span>
+              <div className="rounded-3xl bg-white/90 backdrop-blur-sm border-2 border-[#C9943B]/30 p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+                <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                  <MatildaLogo className="w-16 h-16 sm:w-20 sm:h-20 shadow-md flex-shrink-0" />
+                  <div className="space-y-1 sm:space-y-2">
+                    <div className="inline-flex items-center gap-2 text-xs font-bold text-purple-700">
+                      <span>📷</span>
+                      <span>Official Instagram Atelier</span>
+                    </div>
+                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#240F06]">
+                      Follow {BRAND.instagramHandle}
+                    </h3>
+                    <p className="text-xs text-gray-600 max-w-md font-light">
+                      Watch our daily fresh baking, warm ganache drizzles, and tag us in your sweetest celebrations to be featured!
+                    </p>
                   </div>
-                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#240F06]">
-                    Follow {BRAND.instagramHandle}
-                  </h3>
-                  <p className="text-xs text-gray-600 max-w-md font-light">
-                    Watch our daily fresh baking, warm ganache drizzles, and tag us in your sweetest celebrations to be featured!
-                  </p>
                 </div>
 
                 <a
                   href={BRAND.instagramUrl}
                   target="_blank"
-                  className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white font-bold text-xs shadow-md hover:scale-105 active:scale-95 transition-all whitespace-nowrap flex items-center gap-2"
+                  className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white font-bold text-xs shadow-md hover:scale-105 active:scale-95 transition-all whitespace-nowrap flex items-center gap-2 flex-shrink-0"
                 >
                   <span>Follow on Instagram →</span>
                 </a>
@@ -1303,11 +1300,11 @@
           {/* Luxury Footer */}
           <footer id="site-footer" className="bg-[#1E0E07] text-[#FAF5ED] border-t-2 border-[#C9943B]/40 py-8 sm:py-10 px-4 mt-8 sm:mt-12 relative z-40">
             <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 text-xs text-[#FAF5ED]/70 text-center sm:text-left">
-              <div className="flex items-center gap-3">
-                <MatildaLogo className="w-10 h-10" />
+              <div className="flex items-center gap-3.5">
+                <MatildaLogo className="w-12 h-12 sm:w-14 sm:h-14 shadow-lg flex-shrink-0" />
                 <div className="text-left">
-                  <span className="font-serif font-bold text-base text-[#FAF5ED] block">Matilda Bakeluxe</span>
-                  <span className="text-[10px] text-[#C9943B]">{BRAND.tagline}</span>
+                  <span className="font-serif font-bold text-base sm:text-lg text-[#FAF5ED] block leading-tight">Matilda Bakeluxe</span>
+                  <span className="text-[11px] text-[#C9943B] font-medium">{BRAND.tagline}</span>
                 </div>
               </div>
 
@@ -1390,9 +1387,12 @@
             <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs">
               <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden my-4">
                 <div className="p-4 border-b border-gray-100 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span>📜</span>
-                    <h4 className="font-serif font-bold text-base text-[#240F06]">Official Matilda Bakeluxe Menu</h4>
+                  <div className="flex items-center gap-2.5">
+                    <MatildaLogo className="w-8 h-8" />
+                    <div>
+                      <h4 className="font-serif font-bold text-base text-[#240F06] leading-tight">Official Matilda Bakeluxe Menu</h4>
+                      <span className="text-[10px] text-[#8C5C1B] font-cormorant tracking-wider uppercase font-semibold">Authentic Atelier Card</span>
+                    </div>
                   </div>
                   <button onClick={() => setIsFlyerOpen(false)} className="p-1.5 text-gray-400 hover:text-gray-600">✕</button>
                 </div>
