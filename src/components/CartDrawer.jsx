@@ -12,7 +12,7 @@ export default function CartDrawer({
 }) {
   if (!isOpen) return null;
 
-  const [deliveryDate, setDeliveryDate] = useState('Today (Within 4 Hours)');
+  const [deliveryDate, setDeliveryDate] = useState('Pre-order (1-2 Days in Advance)');
   const [customerAddress, setCustomerAddress] = useState('');
   const [specialInstructions, setSpecialInstructions] = useState('');
   const [copiedInstagram, setCopiedInstagram] = useState(false);
@@ -218,7 +218,7 @@ export default function CartDrawer({
                   onChange={(e) => setDeliveryDate(e.target.value)}
                   className="w-full px-3 py-2 rounded-xl bg-[#261207] border border-[#C89D56]/30 text-xs text-[#FDF9F3] focus:outline-none focus:border-[#E5BE6E]"
                 >
-                  <option value="Today (Within 4-6 Hours)">Today Express (Freshly Baked in 4-6 hrs)</option>
+                  <option value="Pre-order (1-2 Days in Advance)">Pre-order (1-2 Days in Advance)</option>
                   <option value="Tomorrow Morning (10 AM - 1 PM)">Tomorrow Morning (10 AM - 1 PM)</option>
                   <option value="Tomorrow Evening (4 PM - 8 PM)">Tomorrow Evening (4 PM - 8 PM)</option>
                   <option value="This Weekend (Party / Celebration)">This Weekend Celebration</option>

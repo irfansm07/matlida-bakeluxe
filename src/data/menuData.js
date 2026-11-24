@@ -56,6 +56,6 @@ export const FAQS = [
   },
   {
     q: "How much advance notice is needed?",
-    a: "Because each cake is freshly baked and finished to order, please place your order 4 to 6 hours in advance for same-day delivery."
+    a: "Because each cake is freshly baked and finished to order, please place your order 1 to 2 days in advance for delivery."
   }
 ];

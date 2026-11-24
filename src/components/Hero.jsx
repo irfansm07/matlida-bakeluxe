@@ -97,7 +97,7 @@ export default function Hero({ onCustomizeCake, onOpenFlyer }) {
                 <span>🍫</span> Pure Belgian Cocoa
               </span>
               <span className="px-3 py-1 rounded-md bg-[#251006] border border-[#C89D56]/30 text-[#E5BE6E] text-xs flex items-center gap-1.5">
-                <span>⚡</span> Same-Day Express Baking
+                <span>📅</span> Pre-Order 1–2 Days Before
               </span>
               <span className="px-3 py-1 rounded-md bg-[#251006] border border-[#C89D56]/30 text-[#E5BE6E] text-xs flex items-center gap-1.5">
                 <span>⭐</span> 4.98 / 5 Rating
