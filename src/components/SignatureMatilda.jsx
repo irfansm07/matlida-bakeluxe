@@ -122,7 +122,7 @@ export default function SignatureMatilda({ onAddToCart, onCustomizeCake }) {
                 <div className="pt-4 border-t border-[#3A1B0C] space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] uppercase text-[#A38A73] block tracking-wider">All-Inclusive</span>
+                      <span className="text-[10px] uppercase text-[#A38A73] block tracking-wider">Cake Price</span>
                       <div className="flex items-baseline gap-2">
                         <span className="font-serif text-3xl font-extrabold text-[#FFE082]">
                           Rs.{size.price}
@@ -133,6 +133,7 @@ export default function SignatureMatilda({ onAddToCart, onCustomizeCake }) {
                           </span>
                         )}
                       </div>
+                      <span className="text-[11px] text-[#C89D56] italic block mt-0.5">🛵 + a lil' delivery fee</span>
                     </div>
                     {size.savings && (
                       <span className="px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-semibold">
@@ -212,7 +213,7 @@ export default function SignatureMatilda({ onAddToCart, onCustomizeCake }) {
                 className="w-full accent-[#E5BE6E] cursor-pointer h-2 bg-[#170904] rounded-lg"
               />
               <div className="text-center font-serif text-sm text-[#EAD8C0]">
-                Planning for <strong className="text-[#FFE082] font-bold text-base">{guestCount} {guestCount === 1 ? 'person' : 'people'}</strong> → We recommend the <strong className="text-[#FFE082]">{selectedSize.name}</strong> (Rs. {selectedSize.price})
+                Planning for <strong className="text-[#FFE082] font-bold text-base">{guestCount} {guestCount === 1 ? 'person' : 'people'}</strong> → We recommend the <strong className="text-[#FFE082]">{selectedSize.name}</strong> (Rs. {selectedSize.price} <span className="text-[#C89D56] italic text-xs">+ lil' delivery 🛵</span>)
               </div>
             </div>
           </div>
