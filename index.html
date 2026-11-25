@@ -131,6 +131,24 @@
     .steam-particle {
       animation: steamFloat 2.5s ease-out infinite;
     }
+
+    /* Melting Chocolate Box Card */
+    .choco-melt-box {
+      background: linear-gradient(145deg, #4B2210 0%, #2C1207 48%, #160702 100%);
+      border: 1.5px solid rgba(201, 148, 59, 0.72);
+      box-shadow:
+        0 8px 20px rgba(28, 10, 3, 0.28),
+        inset 0 1px 0 rgba(255, 232, 179, 0.28),
+        inset 0 -8px 16px rgba(10, 3, 1, 0.55);
+    }
+    @keyframes meltSwell {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(1.18); }
+    }
+    .choco-drip-pulse {
+      transform-origin: top center;
+      animation: meltSwell 3.2s ease-in-out infinite;
+    }
   </style>
 </head>
 <body class="selection:bg-[#C9943B] selection:text-white">
@@ -1338,20 +1356,65 @@
                     </div>
                   ) : (
                     <>
-                      {/* Bag Items */}
-                      <div className="space-y-2">
+                      {/* Bag Items (Melting Chocolate Box Style) */}
+                      <div className="space-y-2.5">
                         {cart.map(item => (
-                          <div key={item.id} className="px-4 py-3 rounded-2xl border border-[#C9943B]/25 bg-[#FAF5ED] flex items-center justify-between gap-3">
-                            <div className="min-w-0">
-                              <h4 className="font-serif font-bold text-sm text-[#240F06] truncate">Matilda Chocolate Cake ({item.name})</h4>
-                              <div className="flex items-center gap-2.5 mt-0.5">
-                                <span className="text-xs font-bold text-[#C9943B]">Rs. {item.price * item.quantity}</span>
-                                <span className="text-[11px] text-gray-500">· Portions: {item.quantity}</span>
+                          <div key={item.id} className="choco-melt-box relative overflow-hidden rounded-2xl px-3.5 pt-5 pb-3 flex items-center justify-between gap-3">
+                            {/* Glossy Melting Chocolate Drip Top Layer */}
+                            <svg
+                              viewBox="0 0 400 26"
+                              preserveAspectRatio="none"
+                              className="absolute top-0 left-0 w-full h-5 pointer-events-none"
+                            >
+                              <defs>
+                                <linearGradient id={`meltGlaze-${item.id}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                                  <stop offset="0%" stopColor="#7C3B1E" />
+                                  <stop offset="55%" stopColor="#52220E" />
+                                  <stop offset="100%" stopColor="#351407" />
+                                </linearGradient>
+                              </defs>
+                              <path
+                                d="M0,0 L400,0 L400,7 C382,7 376,19 366,19 C356,19 352,8 336,8 C318,8 312,15 298,15 C284,15 278,7 258,7 C240,7 234,22 222,22 C210,22 206,8 186,8 C166,8 160,16 146,16 C132,16 128,7 108,7 C88,7 82,21 70,21 C58,21 54,8 34,8 C18,8 10,14 0,11 Z"
+                                fill={`url(#meltGlaze-${item.id})`}
+                              />
+                              {/* Specular Cocoa Gloss Highlight */}
+                              <path
+                                d="M12,3 Q60,5 110,3 T220,4 T340,3"
+                                stroke="rgba(255, 224, 175, 0.35)"
+                                strokeWidth="1.4"
+                                strokeLinecap="round"
+                                fill="none"
+                              />
+                              {/* Animated Melting Droplet Tips */}
+                              <ellipse cx="70" cy="20" rx="4.5" ry="4" fill="#461C0B" className="choco-drip-pulse" />
+                              <ellipse cx="222" cy="21" rx="4" ry="3.8" fill="#461C0B" className="choco-drip-pulse" style={{ animationDelay: '1.4s' }} />
+                            </svg>
+
+                            {/* Subtle Gloss Sheen */}
+                            <div className="absolute -top-6 -left-6 w-28 h-20 rounded-full bg-amber-200/10 blur-xl pointer-events-none" />
+
+                            {/* Left: Mini Box/Tin Illustration + Details */}
+                            <div className="flex items-center gap-2.5 min-w-0 relative z-10">
+                              <div className="w-11 h-10 rounded-xl bg-black/30 border border-[#C9943B]/40 flex items-center justify-center flex-shrink-0 p-0.5 shadow-inner">
+                                {item.illustrationType === "box" && <IllustrationBox className="w-9 h-9" />}
+                                {item.illustrationType === "tin" && <IllustrationTin className="w-9 h-9" />}
+                                {item.illustrationType === "twin" && <IllustrationTwinTins className="w-10 h-9" />}
+                              </div>
+                              <div className="min-w-0">
+                                <h4 className="font-serif font-bold text-sm text-[#FFF4DC] truncate drop-shadow-xs">
+                                  Matilda Chocolate Cake ({item.name})
+                                </h4>
+                                <div className="flex items-center gap-2 mt-0.5">
+                                  <span className="text-xs font-extrabold text-[#E8BF6D]">Rs. {item.price * item.quantity}</span>
+                                  <span className="text-[11px] text-[#FAF5ED]/75">· Portions: {item.quantity}</span>
+                                  <span className="text-[10px] text-[#E8BF6D]/85 hidden sm:inline">🍫 Molten</span>
+                                </div>
                               </div>
                             </div>
+
                             <button
                               onClick={() => setCart(cart.filter(i => i.id !== item.id))}
-                              className="text-gray-400 hover:text-red-500 text-xs p-1.5 flex-shrink-0"
+                              className="text-[#FAF5ED]/55 hover:text-rose-400 text-xs p-1.5 flex-shrink-0 relative z-10 transition-colors"
                               title="Remove"
                             >
                               🗑️
