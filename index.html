@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matilda Bakeluxe | Home-baked. Luxe-finished. | Official Boutique</title>
-  <meta name="description" content="Official website of Matilda Bakeluxe (@matilda.bakeluxe). Home-baked. Luxe-finished. Indulge in every slice of happiness with our iconic Matilda Chocolate Cake: 200g Box (Rs. 129), 500g Tin (Rs. 399), 1kg Bundle (Rs. 699). 100% Eggless.">
+  <meta name="description" content="Official website of Matilda Bakeluxe (@matilda.bakeluxe). Home-baked. Luxe-finished. Indulge in every slice of happiness with our iconic Matilda Chocolate Cake: 200g Box (Rs. 129 + delivery), 500g Tin (Rs. 399 + delivery), 1kg Bundle (Rs. 699 + delivery). 100% Eggless.">
   <link rel="icon" type="image/jpeg" href="./assets/matilda-logo.jpg">
   <link rel="apple-touch-icon" href="./assets/matilda-logo.jpg">
 
@@ -762,7 +762,7 @@
         playSweetChime();
         const qty = quantities[sizeObj.id] || 1;
         const total = sizeObj.price * qty;
-        const text = `🧁 *NEW ORDER — MATILDA BAKELUXE*\n----------------------------------------\n*Item:* Matilda Chocolate Cake (${sizeObj.name})\n*Quantity:* ${qty}\n*Total Price:* Rs. ${total}\n*Diet:* 100% Pure Veg & Eggless\n----------------------------------------\nHello, I would like to order this fresh for delivery! Please confirm availability. ✨`;
+        const text = `🧁 *NEW ORDER — MATILDA BAKELUXE*\n----------------------------------------\n*Item:* Matilda Chocolate Cake (${sizeObj.name})\n*Quantity:* ${qty}\n*Cake Price:* Rs. ${total} (+ delivery charges extra)\n*Diet:* 100% Pure Veg & Eggless\n----------------------------------------\nHello, I would like to order this fresh for delivery! Please confirm availability & delivery fee. ✨`;
         const cleanNumber = BRAND.whatsappNumber.replace(/[^0-9]/g, '');
         window.open(`https://wa.me/${cleanNumber}?text=${encodeURIComponent(text)}`, '_blank');
       };
@@ -776,7 +776,7 @@
         cart.forEach((item, idx) => {
           msg += `${idx + 1}. *Matilda Chocolate Cake (${item.name})* x ${item.quantity} = Rs. ${item.price * item.quantity}\n`;
         });
-        msg += `----------------------------------------\n*Total Amount:* Rs. ${totalBagPrice}\n*Diet:* 100% Eggless (Pure Veg)\n----------------------------------------\nHello, I want to confirm this order for delivery! ✨`;
+        msg += `----------------------------------------\n*Cake Subtotal:* Rs. ${totalBagPrice} (+ delivery charges extra)\n*Diet:* 100% Eggless (Pure Veg)\n----------------------------------------\nHello, I want to confirm this order for delivery! Please share the delivery fee. ✨`;
         const cleanNumber = BRAND.whatsappNumber.replace(/[^0-9]/g, '');
         window.open(`https://wa.me/${cleanNumber}?text=${encodeURIComponent(msg)}`, '_blank');
       };
@@ -946,9 +946,11 @@
                                 {size.badge}
                               </span>
                             </div>
-                            <span className={`text-xs sm:text-xs font-extrabold block mt-0 sm:mt-1 ${isSelected ? 'text-[#E8BF6D]' : 'text-[#8C5C1B]'}`}>
-                              Rs. {size.price}
-                            </span>
+                            <div className="text-right sm:text-center mt-0 sm:mt-1">
+                              <span className={`text-xs sm:text-xs font-extrabold block ${isSelected ? 'text-[#E8BF6D]' : 'text-[#8C5C1B]'}`}>
+                                Rs. {size.price} <span className={`text-[10px] font-medium ${isSelected ? 'text-[#FAF5ED]/75' : 'text-[#8C5C1B]/80'}`}>+ delivery</span>
+                              </span>
+                            </div>
                           </button>
                         );
                       })}
@@ -971,16 +973,24 @@
                       </div>
 
                       {/* Ornate Price Plaque */}
-                      <div className="text-left sm:text-right flex sm:flex-col items-baseline sm:items-end gap-2 sm:gap-0">
-                        <span className="text-[9px] sm:text-[10px] text-[#FAF5ED]/60 uppercase tracking-widest block">Price:</span>
-                        <span className="font-serif text-2xl sm:text-4xl font-extrabold gold-foil-text">
-                          Rs. {activeSize.price}
-                        </span>
+                      <div className="text-left sm:text-right flex flex-col items-start sm:items-end gap-0.5">
+                        <span className="text-[9px] sm:text-[10px] text-[#FAF5ED]/60 uppercase tracking-widest block">Cake Price:</span>
+                        <div className="flex items-baseline gap-1.5">
+                          <span className="font-serif text-2xl sm:text-4xl font-extrabold gold-foil-text">
+                            Rs. {activeSize.price}
+                          </span>
+                          <span className="text-[11px] sm:text-xs font-bold text-[#E8BF6D]">
+                            + delivery
+                          </span>
+                        </div>
                         {activeSize.savings && (
                           <span className="text-[10px] sm:text-[11px] font-bold text-emerald-400 block">
                             {activeSize.savings}
                           </span>
                         )}
+                        <span className="text-[10px] sm:text-[11px] text-[#FAF5ED]/80 italic block mt-0.5">
+                          🛵 Cake can't walk on its own — tiny delivery fee extra!
+                        </span>
                       </div>
                     </div>
 
@@ -1049,6 +1059,10 @@
                 <p className="text-xs sm:text-sm text-[#69381E]">
                   Hand-baked daily with premium Belgian couverture cocoa · 100% Pure Veg & Eggless
                 </p>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 border border-[#C9943B]/40 text-[#432111] text-[11px] sm:text-xs font-medium shadow-xs mt-1">
+                  <span>🛵</span>
+                  <span>Prices below are <strong className="text-[#8C5C1B]">cake-only</strong> — our chocolate doesn't have legs yet, so a tiny delivery fee applies!</span>
+                </div>
               </div>
 
               {/* 3 Horizontal Plaque Cards (Matching the Flyer Layout) */}
@@ -1087,15 +1101,23 @@
 
                       {/* Right: Plaque with Price & Direct Order */}
                       <div className="flex-shrink-0 flex flex-col items-center sm:items-end gap-2.5 sm:gap-3 w-full md:w-auto">
-                        <div className="plaque-gold px-6 py-2.5 sm:px-8 sm:py-3 text-center w-full sm:min-w-[170px]">
-                          <span className="font-serif text-2xl sm:text-3xl font-extrabold gold-foil-text block">
-                            Rs. {size.price}
-                          </span>
+                        <div className="plaque-gold px-6 py-2.5 sm:px-8 sm:py-3 text-center w-full sm:min-w-[195px]">
+                          <div className="flex items-baseline justify-center gap-1.5">
+                            <span className="font-serif text-2xl sm:text-3xl font-extrabold gold-foil-text">
+                              Rs. {size.price}
+                            </span>
+                            <span className="text-[11px] font-bold text-[#E8BF6D]">
+                              + delivery
+                            </span>
+                          </div>
                           {size.savings && (
-                            <span className="text-[10px] font-bold text-emerald-400 block -mt-0.5 sm:-mt-1">
+                            <span className="text-[10px] font-bold text-emerald-400 block -mt-0.5">
                               {size.savings}
                             </span>
                           )}
+                          <span className="text-[10px] text-[#FAF5ED]/75 italic block mt-0.5">
+                            🛵 + tiny delivery charge
+                          </span>
                         </div>
 
                         <div className="grid grid-cols-2 gap-2 w-full">
@@ -1197,6 +1219,7 @@
               <div className="space-y-3">
                 {[
                   { q: "Is the Matilda Chocolate Cake 100% Eggless?", a: "Yes! Our cake is 100% pure vegetarian and eggless. We achieve that rich, cloud-soft, intensely moist chocolate fudge texture through pure Belgian couverture and slow-churned butter." },
+                  { q: "Are delivery charges included in the price?", a: "Our listed prices (Rs. 129, Rs. 399, Rs. 699) are purely for the cake! Since chocolate cakes haven't learned to teleport yet, a small delivery charge applies extra based on your location — we'll let you know on WhatsApp before confirming." },
                   { q: "How do I place an order?", a: "Choose your portion size above and tap 'Order on WhatsApp' to send your pre-filled cart with 1 click, or DM us on Instagram @matilda.bakeluxe!" },
                   { q: "How much advance notice is needed?", a: "Each cake is freshly baked and finished to order. Please order 1 to 2 days in advance for delivery." }
                 ].map(faq => (
@@ -1248,7 +1271,7 @@
                       href="#menu"
                       className="px-8 py-3.5 rounded-full bg-[#C9943B] hover:bg-[#B3802E] text-[#1E0E07] font-extrabold text-xs sm:text-sm shadow-xl transition-all"
                     >
-                      Taste The Ganache — Order Cake (From Rs. 129)
+                      Taste The Ganache — Order Cake (From Rs. 129 + delivery)
                     </a>
                     <a
                       href={`https://wa.me/${BRAND.whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent("Hello Matilda Bakeluxe! I would like to inquire about ordering your artisanal Matilda Chocolate Cake. ✨")}`}
@@ -1317,7 +1340,7 @@
                       <div key={item.id} className="p-4 rounded-2xl border border-gray-200 bg-[#FAF5ED] flex items-center justify-between">
                         <div>
                           <h4 className="font-serif font-bold text-sm text-[#240F06]">Matilda Chocolate Cake ({item.name})</h4>
-                          <span className="text-xs font-bold text-[#C9943B]">Rs. {item.price * item.quantity}</span>
+                          <span className="text-xs font-bold text-[#C9943B]">Rs. {item.price * item.quantity} <span className="text-[10px] font-normal text-[#8C5C1B]">+ delivery</span></span>
                           <span className="text-[10px] text-gray-500 block">Portions: {item.quantity}</span>
                         </div>
                         <button
@@ -1333,9 +1356,17 @@
 
                 {cart.length > 0 && (
                   <div className="p-5 border-t border-gray-100 bg-gray-50 space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs text-gray-500 uppercase font-bold tracking-wider">Total</span>
-                      <span className="font-serif text-2xl font-extrabold text-[#240F06]">Rs. {totalBagPrice}</span>
+                    <div className="space-y-1">
+                      <div className="flex justify-between items-baseline">
+                        <span className="text-xs text-gray-500 uppercase font-bold tracking-wider">Cake Total</span>
+                        <div className="text-right">
+                          <span className="font-serif text-2xl font-extrabold text-[#240F06]">Rs. {totalBagPrice}</span>
+                          <span className="text-xs font-bold text-[#8C5C1B] ml-1">+ delivery</span>
+                        </div>
+                      </div>
+                      <p className="text-[11px] text-[#8C5C1B] italic text-right">
+                        🛵 Teleportation is still in beta — tiny delivery fee extra!
+                      </p>
                     </div>
 
                     <button
