@@ -85,7 +85,7 @@ export default function Hero({ onCustomizeCake, onOpenFlyer }) {
 
             {/* Narrative / Description */}
             <p className="font-sans text-base sm:text-lg text-[#EAD8C0]/85 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
-              Crafted in small batches with velvety Belgian cocoa, drenched in glossy warm ganache, and crowned with hand-rolled chocolate curls. Available in our iconic <strong className="text-[#FFE082] font-semibold">200g Gift Box (Rs. 129)</strong>, <strong className="text-[#FFE082] font-semibold">500g Cake Tin (Rs. 399)</strong>, and <strong className="text-[#FFE082] font-semibold">1kg Grand Twin Pack (Rs. 699)</strong>.
+              Crafted in small batches with velvety Belgian cocoa, drenched in glossy warm ganache, and crowned with hand-rolled chocolate curls. Available in our iconic <strong className="text-[#FFE082] font-semibold">200g Gift Box (Rs. 129)</strong>, <strong className="text-[#FFE082] font-semibold">500g Cake Tin (Rs. 399)</strong>, and <strong className="text-[#FFE082] font-semibold">1kg Grand Twin Pack (Rs. 699)</strong> — <span className="text-[#C89D56] italic">tiny delivery fee, massive happiness!</span> 🛵🍫
             </p>
 
             {/* Badges Bar */}
@@ -134,16 +134,19 @@ export default function Hero({ onCustomizeCake, onOpenFlyer }) {
               <div>
                 <span className="text-[#A38A73] block text-[11px] uppercase tracking-wider">200g Box</span>
                 <span className="font-serif font-bold text-[#FFE082] text-lg">Rs. 129</span>
+                <span className="text-[#C89D56] block text-[10px] italic">🛵 lil' delivery fee</span>
               </div>
-              <div className="w-[1px] h-8 bg-[#3A1B0C]" />
+              <div className="w-[1px] h-10 bg-[#3A1B0C]" />
               <div>
                 <span className="text-[#A38A73] block text-[11px] uppercase tracking-wider">500g Tin</span>
                 <span className="font-serif font-bold text-[#FFE082] text-lg">Rs. 399</span>
+                <span className="text-[#C89D56] block text-[10px] italic">🛵 lil' delivery fee</span>
               </div>
-              <div className="w-[1px] h-8 bg-[#3A1B0C]" />
+              <div className="w-[1px] h-10 bg-[#3A1B0C]" />
               <div>
                 <span className="text-[#A38A73] block text-[11px] uppercase tracking-wider">1kg Twin Tins</span>
                 <span className="font-serif font-bold text-[#FFE082] text-lg">Rs. 699</span>
+                <span className="text-[#C89D56] block text-[10px] italic">🛵 lil' delivery fee</span>
               </div>
             </div>
 
@@ -207,7 +210,7 @@ export default function Hero({ onCustomizeCake, onOpenFlyer }) {
                 {/* Price Tag Chip */}
                 <div className="absolute bottom-3 left-3 px-3 py-1.5 rounded-xl bg-[#1E0B04]/90 backdrop-blur-md border border-[#C89D56]/40 text-[#FFE082] shadow-lg">
                   <span className="text-[10px] block text-[#C89D56] leading-none uppercase">Starting At</span>
-                  <span className="font-serif font-bold text-base">Rs. 129</span>
+                  <span className="font-serif font-bold text-base">Rs. 129 🛵✨</span>
                 </div>
 
                 {/* Freshness Badge */}

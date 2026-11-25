@@ -130,8 +130,10 @@ export default function CustomizerModal({
                         {size.name.split(' ')[0]} {size.name.split(' ')[1]}
                       </span>
                       <span className="font-serif font-bold text-[#FFE082]">
-                        Rs.{size.price}
+                        Rs.{size.price}+
                       </span>
+                    </div>
+                    <span className="text-[10px] text-[#C89D56] block mt-0.5 font-light italic">🛵 tiny delivery fee applies</span>
                     </div>
                     <span className="text-[11px] text-[#A38A73] block mt-1">
                       {size.servings}
@@ -300,6 +302,7 @@ export default function CustomizerModal({
             <span className="font-serif font-extrabold text-2xl sm:text-3xl text-[#FFE082]">
               Rs.{totalPrice}
             </span>
+            <span className="text-[11px] text-[#C89D56] block mt-0.5 italic">🛵 + a lil' delivery fee (worth every bite!)</span>
           </div>
 
           <div className="flex items-center gap-3">

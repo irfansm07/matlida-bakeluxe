@@ -262,13 +262,16 @@ export default function CartDrawer({
             {/* Subtotal */}
             <div className="flex items-center justify-between">
               <span className="text-xs uppercase text-[#A38A73] tracking-wider">Subtotal</span>
-              <span className="font-serif font-extrabold text-2xl text-[#FFE082]">
-                Rs. {subtotal}
-              </span>
+              <div className="text-right">
+                <span className="font-serif font-extrabold text-2xl text-[#FFE082] block">
+                  Rs. {subtotal}
+                </span>
+                <span className="text-[11px] text-[#C89D56] italic">🛵 + a lil' delivery fee (we promise it's worth it!)</span>
+              </div>
             </div>
 
             <p className="text-[11px] text-[#A38A73] text-center">
-              Payment made directly via UPI / Cash upon order confirmation.
+              Cake total above. Our friendly delivery hero brings it to you for a tiny extra fee 🛵🍫
             </p>
 
             {/* Direct WhatsApp Order CTA */}

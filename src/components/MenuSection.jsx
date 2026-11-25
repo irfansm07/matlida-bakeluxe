@@ -15,7 +15,7 @@ export default function MenuSection({ onAddToCart, onCustomizeCake }) {
       name: SIGNATURE_CAKE.name,
       category: 'Cakes',
       price: 129,
-      priceLabel: 'From Rs. 129',
+      priceLabel: 'From Rs. 129 🛵',
       rating: SIGNATURE_CAKE.rating,
       reviews: SIGNATURE_CAKE.reviewCount,
       image: SIGNATURE_CAKE.image,
@@ -133,7 +133,7 @@ export default function MenuSection({ onAddToCart, onCustomizeCake }) {
 
                   {/* Price Tag Pill */}
                   <div className="absolute bottom-3 left-4 px-3.5 py-1 rounded-full bg-[#180803]/90 backdrop-blur-md border border-[#E5BE6E]/50 text-[#FFE082] font-serif font-bold text-sm shadow-md">
-                    {item.priceLabel || `Rs. ${item.price}`}
+                    {item.priceLabel || `Rs. ${item.price} 🛵`}
                   </div>
                 </div>
 
