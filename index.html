@@ -728,6 +728,9 @@
       const [isCartOpen, setIsCartOpen] = useState(false);
       const [isFlyerOpen, setIsFlyerOpen] = useState(false);
       const [toastMsg, setToastMsg] = useState(null);
+      const [recipientName, setRecipientName] = useState('');
+      const [giftNote, setGiftNote] = useState('');
+      const [senderName, setSenderName] = useState('');
 
       const activeSize = MENU_SIZES[selectedTierIndex];
 
@@ -776,6 +779,12 @@
         cart.forEach((item, idx) => {
           msg += `${idx + 1}. *Matilda Chocolate Cake (${item.name})* x ${item.quantity} = Rs. ${item.price * item.quantity}\n`;
         });
+        if (recipientName.trim() || giftNote.trim() || senderName.trim()) {
+          msg += `----------------------------------------\n💌 *Complimentary Gift Card Note:*\n`;
+          if (recipientName.trim()) msg += `   • *To:* ${recipientName.trim()}\n`;
+          if (giftNote.trim()) msg += `   • *Message:* "${giftNote.trim()}"\n`;
+          if (senderName.trim()) msg += `   • *From:* ${senderName.trim()}\n`;
+        }
         msg += `----------------------------------------\n*Cake Treat Total:* Rs. ${totalBagPrice} (+ doorstep delivery ride extra)\n*Diet:* 100% Eggless (Pure Veg)\n----------------------------------------\nHello! Ready to indulge — please share availability & delivery fare! ✨🛵`;
         const cleanNumber = BRAND.whatsappNumber.replace(/[^0-9]/g, '');
         window.open(`https://wa.me/${cleanNumber}?text=${encodeURIComponent(msg)}`, '_blank');
@@ -1320,7 +1329,7 @@
                   <button onClick={() => setIsCartOpen(false)} className="p-2 text-gray-400 hover:text-gray-600">✕</button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-5 space-y-3">
+                <div className="flex-1 overflow-y-auto p-5 space-y-4">
                   {cart.length === 0 ? (
                     <div className="text-center py-20 space-y-3">
                       <span className="text-5xl block animate-bounce">🧁</span>
@@ -1328,21 +1337,150 @@
                       <p className="text-xs text-gray-500">Pick a 200g Box, 500g Tin, or 1kg Bundle!</p>
                     </div>
                   ) : (
-                    cart.map(item => (
-                      <div key={item.id} className="p-4 rounded-2xl border border-gray-200 bg-[#FAF5ED] flex items-center justify-between">
-                        <div>
-                          <h4 className="font-serif font-bold text-sm text-[#240F06]">Matilda Chocolate Cake ({item.name})</h4>
-                          <span className="text-xs font-bold text-[#C9943B]">Rs. {item.price * item.quantity}</span>
-                          <span className="text-[10px] text-gray-500 block">Portions: {item.quantity}</span>
-                        </div>
-                        <button
-                          onClick={() => setCart(cart.filter(i => i.id !== item.id))}
-                          className="text-gray-400 hover:text-red-500 text-xs p-2"
-                        >
-                          🗑️
-                        </button>
+                    <>
+                      <div className="space-y-3">
+                        {cart.map(item => (
+                          <div key={item.id} className="p-4 rounded-2xl border border-gray-200 bg-[#FAF5ED] flex items-center justify-between">
+                            <div>
+                              <h4 className="font-serif font-bold text-sm text-[#240F06]">Matilda Chocolate Cake ({item.name})</h4>
+                              <span className="text-xs font-bold text-[#C9943B]">Rs. {item.price * item.quantity}</span>
+                              <span className="text-[10px] text-gray-500 block">Portions: {item.quantity}</span>
+                            </div>
+                            <button
+                              onClick={() => setCart(cart.filter(i => i.id !== item.id))}
+                              className="text-gray-400 hover:text-red-500 text-xs p-2"
+                            >
+                              🗑️
+                            </button>
+                          </div>
+                        ))}
                       </div>
-                    ))
+
+                      {/* CUTE LIVE GIFT NOTE CARD PREVIEW & COMPOSER */}
+                      <div className="pt-2 space-y-3">
+                        <div className="flex items-center justify-between">
+                          <span className="font-serif font-bold text-xs text-[#240F06] flex items-center gap-1.5">
+                            <span>💌</span>
+                            <span>Message for Your Loved One</span>
+                          </span>
+                          <span className="px-2 py-0.5 rounded-full bg-amber-100 border border-[#C9943B]/40 text-[#8C5C1B] text-[10px] font-bold">
+                            Free Card ✨
+                          </span>
+                        </div>
+
+                        {/* Live Keepsake Card Preview */}
+                        <div className="relative rounded-2xl bg-gradient-to-br from-[#FFFDF9] via-[#FAF2E6] to-[#F3E4CE] border-2 border-[#C9943B]/60 p-3 shadow-md">
+                          <div className="rounded-xl border border-dashed border-[#C9943B]/45 p-4 relative overflow-hidden">
+                            {/* Decorative corner sparkles */}
+                            <span className="absolute top-2 left-2.5 text-[10px] text-[#C9943B]/60">✦</span>
+                            <span className="absolute top-2 right-2.5 text-[10px] text-[#C9943B]/60">✦</span>
+
+                            {/* Top Crest & Header */}
+                            <div className="flex flex-col items-center text-center mb-2.5">
+                              <div className="relative mb-1">
+                                <MatildaLogo className="w-8 h-8 shadow-xs" />
+                                <span className="absolute -bottom-1 -right-1 text-[10px]">🤎</span>
+                              </div>
+                              <span className="font-cormorant text-[9px] uppercase tracking-[0.22em] font-bold text-[#8C5C1B]">
+                                Matilda Bakeluxe · Keepsake Note
+                              </span>
+                            </div>
+
+                            {/* Live Recipient Line */}
+                            <div className="font-script text-2xl text-[#8C5C1B] leading-tight">
+                              Dearest {recipientName.trim() || 'Someone Special'},
+                            </div>
+
+                            {/* Live Message Body */}
+                            <div className={`font-cormorant italic text-base leading-snug my-2 min-h-[44px] break-words whitespace-pre-wrap transition-all ${giftNote.trim() ? 'text-[#240F06] font-semibold' : 'text-[#8C5C1B]/55'}`}>
+                              {giftNote.trim()
+                                ? `"${giftNote}"`
+                                : "Your sweet note will appear right here live as you type... ✨"}
+                            </div>
+
+                            {/* Live Sender Signature */}
+                            <div className="text-right font-script text-xl text-[#C9943B] pt-1">
+                              — {senderName.trim() || 'With Love & Chocolate 🍫'}
+                            </div>
+
+                            {/* Tiny Ribbon Footer */}
+                            <div className="mt-2.5 pt-2 border-t border-[#C9943B]/20 text-center text-[9px] font-cormorant uppercase tracking-widest text-[#8C5C1B]/75">
+                              ★ Hand-packed with 100% Eggless Love ★
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Quick-pick Cute Message Starters */}
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          {[
+                            { label: "🎂 Birthday", text: "Wishing you a day as sweet & rich as this chocolate cake! Happy Birthday! 🎂🍫" },
+                            { label: "🤎 Love", text: "Just a warm chocolatey reminder that you mean the world to me! 🤎✨" },
+                            { label: "🎉 Congrats", text: "So proud of you! Celebrating your big moment with extra ganache! 🎉🍫" },
+                            { label: "✨ Miss You", text: "Sending warm hugs & molten Belgian chocolate straight to your door! 💌" }
+                          ].map(chip => (
+                            <button
+                              key={chip.label}
+                              type="button"
+                              onClick={() => {
+                                playDripSound();
+                                setGiftNote(chip.text);
+                              }}
+                              className="px-2.5 py-1 rounded-full bg-[#FAF5ED] hover:bg-[#F3E9DD] border border-[#C9943B]/35 text-[10px] font-semibold text-[#69381E] transition-all active:scale-95"
+                            >
+                              {chip.label}
+                            </button>
+                          ))}
+                          {(recipientName || giftNote || senderName) && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setRecipientName('');
+                                setGiftNote('');
+                                setSenderName('');
+                              }}
+                              className="px-2 py-1 text-[10px] text-gray-400 hover:text-red-500 underline ml-auto"
+                            >
+                              Clear
+                            </button>
+                          )}
+                        </div>
+
+                        {/* To / From + Message Inputs */}
+                        <div className="space-y-2">
+                          <div className="grid grid-cols-2 gap-2">
+                            <input
+                              type="text"
+                              maxLength={28}
+                              placeholder="To (e.g. Maya)"
+                              value={recipientName}
+                              onChange={(e) => setRecipientName(e.target.value)}
+                              className="px-3 py-2 rounded-xl bg-[#FAF5ED] border border-[#C9943B]/35 text-xs text-[#240F06] placeholder-[#8C5C1B]/50 focus:outline-none focus:border-[#C9943B]"
+                            />
+                            <input
+                              type="text"
+                              maxLength={28}
+                              placeholder="From (e.g. Alex)"
+                              value={senderName}
+                              onChange={(e) => setSenderName(e.target.value)}
+                              className="px-3 py-2 rounded-xl bg-[#FAF5ED] border border-[#C9943B]/35 text-xs text-[#240F06] placeholder-[#8C5C1B]/50 focus:outline-none focus:border-[#C9943B]"
+                            />
+                          </div>
+                          <div className="relative">
+                            <textarea
+                              rows={2}
+                              maxLength={140}
+                              placeholder="Type your cute message here & watch the card update live..."
+                              value={giftNote}
+                              onChange={(e) => setGiftNote(e.target.value)}
+                              className="w-full px-3 py-2 rounded-xl bg-[#FAF5ED] border border-[#C9943B]/35 text-xs text-[#240F06] placeholder-[#8C5C1B]/50 focus:outline-none focus:border-[#C9943B] resize-none"
+                            />
+                            <span className="absolute bottom-2 right-2.5 text-[9px] text-[#8C5C1B]/60">
+                              {giftNote.length}/140
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
 
