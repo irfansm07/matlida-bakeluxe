@@ -122,7 +122,7 @@ export default function SignatureMatilda({ onAddToCart, onCustomizeCake }) {
                 <div className="pt-4 border-t border-[#3A1B0C] space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] uppercase text-[#A38A73] block tracking-wider">Cake Price</span>
+                      <span className="text-[10px] uppercase text-[#A38A73] block tracking-wider">Price</span>
                       <div className="flex items-baseline gap-2">
                         <span className="font-serif text-3xl font-extrabold text-[#FFE082]">
                           Rs.{size.price}
